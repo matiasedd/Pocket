@@ -4,80 +4,36 @@ import database from "../database";
 
 export const transaction = {
   listAll: async (req: Request, res: Response) => {
-    const { userid } = req.params;
-    const { type } = req.query;
+    const { user_id, card_id } = req.params;
 
-    let query;
-
-    switch (type) {
-      case "incomes":
-        query = await database("transactions")
-          .where({
-            user_id: userid,
-            type: "income",
-          })
-          .orderBy("created_at", "desc");
-        break;
-      case "expenses":
-        query = await database("transactions")
-          .where({
-            user_id: userid,
-            type: "expense",
-          })
-          .orderBy("created_at", "desc");
-        break;
-      case "balance":
-        query = await database("transactions")
-          .where("user_id", userid)
-          .sum("value");
-        break;
-      case "sumincomes":
-        query = await database("transactions")
-          .where({
-            user_id: userid,
-            type: "income",
-          })
-          .sum("value");
-        break;
-      case "sumexpenses":
-        query = await database("transactions")
-          .where({
-            user_id: userid,
-            type: "expense",
-          })
-          .sum("value");
-        break;
-      default:
-        query = await database("transactions")
-          .where("user_id", userid)
-          .orderBy("created_at", "desc");
-    }
-
+    const query = await database("transactions")
+      .where({ user_id, card_id })
+      .orderBy("created_at", "desc");
     res.json(query);
   },
   listTransaction: async (req: Request, res: Response) => {
-    const { transactionid } = req.params;
-    const query = await database("transactions").where("id", transactionid);
+    const { transaction_id } = req.params;
+    const query = await database("transactions").where({ transaction_id });
     res.json(query);
   },
   add: async (req: Request, res: Response) => {
-    const { userid } = req.params;
-    const id = uuidv4();
+    const { user_id, card_id } = req.params;
+    const transaction_id = uuidv4();
 
     try {
       await database("transactions")
-        .where("id", userid)
-        .insert({ ...req.body, id });
+        .where({ user_id, card_id })
+        .insert({ ...req.body, transaction_id });
       res.sendStatus(201);
     } catch (err) {
       res.send(err);
     }
   },
   update: async (req: Request, res: Response) => {
-    const { userid, transactionid } = req.params;
+    const { user_id, card_id, transaction_id } = req.params;
     try {
       await database("transactions")
-        .where({ user_id: userid, id: transactionid })
+        .where({ user_id, card_id, transaction_id })
         .update(req.body);
       res.sendStatus(200);
     } catch (err) {
@@ -85,10 +41,10 @@ export const transaction = {
     }
   },
   delete: async (req: Request, res: Response) => {
-    const { userid, transactionid } = req.params;
+    const { user_id, card_id, transaction_id } = req.params;
     try {
       await database("transactions")
-        .where({ user_id: userid, id: transactionid })
+        .where({ user_id, card_id, transaction_id })
         .del();
       res.sendStatus(200);
     } catch (err) {

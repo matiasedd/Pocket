@@ -9,36 +9,36 @@ const user = {
     res.json(query);
   },
   listUser: async (req: Request, res: Response) => {
-    const { userid } = req.params;
-    const query = await database("users").where("id", userid);
+    const { user_id } = req.params;
+    const query = await database("users").where({ user_id });
     res.json(query);
   },
   add: async (req: Request, res: Response) => {
     let { password } = req.body;
 
-    const id = uuidv4();
+    const user_id = uuidv4();
     password = hashSync(password, password.length);
 
     try {
-      await database("users").insert({ ...req.body, id, password });
+      await database("users").insert({ ...req.body, user_id, password });
       res.sendStatus(201);
     } catch (err) {
       res.send(err);
     }
   },
   update: async (req: Request, res: Response) => {
-    const { userid } = req.params;
+    const { user_id } = req.params;
     try {
-      await database("users").where("id", userid).update(req.body);
+      await database("users").where({ user_id }).update(req.body);
       res.sendStatus(200);
     } catch (err) {
       res.send(err);
     }
   },
   delete: async (req: Request, res: Response) => {
-    const { userid } = req.params;
+    const { user_id } = req.params;
     try {
-      await database("users").where("id", userid).del();
+      await database("users").where({ user_id }).del();
       res.sendStatus(200);
     } catch (err) {
       res.send(err);

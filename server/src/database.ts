@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const knex: Knex = require("knex")({
-  client: process.env.DB_CLIENT,
+  client: "mysql",
   connection: {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,

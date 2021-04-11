@@ -1,31 +1,29 @@
 import { Router } from "express";
 
 import user from "./controllers/userController";
+import card from "./controllers/cardController";
 import transaction from "./controllers/transactionController";
 
 const router = Router();
 
 router.get("/users", user.listAll);
-router.get("/users/:userid", user.listUser);
-router.get("/users/:userid/transactions", transaction.listAll);
-router.get(
-  "/users/:userid/transactions/:transactionid",
-  transaction.listTransaction
-);
+router.get("/users/:user_id", user.listUser);
 
-router.post("/users/add", user.add);
-router.post("/users/:userid/transactions/add", transaction.add);
+router.get("/users/:user_id/cards", card.listAll);
+router.get("/users/:user_id/cards/:card_id", card.listCard);
 
-router.put("/users/:userid/update", user.update);
-router.put(
-  "/users/:userid/transactions/:transactionid/update",
-  transaction.update
-);
+router.get("/users/:user_id/cards/:card_id/transactions", transaction.listAll);
+router.get("/users/:user_id/cards/:card_id/transactions/:transaction_id", transaction.listTransaction);
 
-router.delete("/users/:userid/delete", user.delete);
-router.delete(
-  "/users/:userid/transactions/:transactionid/delete",
-  transaction.delete
-);
+router.post("/users", user.add);
+router.post("/users/:user_id/cards", card.add);
+router.post("/users/:user_id/cards/:card_id/transactions", transaction.add);
+
+router.put("/users/:user_id", user.update);
+router.put(  "/users/:user_id/cards/:card_id/transactions/:transaction_id", transaction.update);
+
+router.delete("/users/:user_id", user.delete);
+router.delete("/users/:user_id/cards/:card_id", card.delete);
+router.delete("/users/:user_id/cards/:card_id/transactions/:transaction_id", transaction.delete);
 
 module.exports = router;
