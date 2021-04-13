@@ -1,10 +1,10 @@
-import { Knex } from "knex";
-import dotenv from "dotenv";
+import { Knex } from 'knex';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-const knex: Knex = require("knex")({
-  client: "mysql",
+const knex: Knex = require('knex')({
+  client: 'mysql',
   connection: {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
