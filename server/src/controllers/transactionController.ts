@@ -4,10 +4,10 @@ import database from '../database';
 
 export const transaction = {
   listAll: async (req: Request, res: Response) => {
-    const { user_id, card_id } = req.params;
+    const { user_id } = req.params;
 
     const query = await database('transactions')
-      .where({ user_id, card_id })
+      .where({ user_id })
       .orderBy('created_at', 'desc');
     res.json(query);
   },
@@ -17,12 +17,12 @@ export const transaction = {
     res.json(query);
   },
   add: async (req: Request, res: Response) => {
-    const { user_id, card_id } = req.params;
+    const { user_id } = req.params;
     const transaction_id = uuidv4();
 
     try {
       await database('transactions')
-        .where({ user_id, card_id })
+        .where({ user_id })
         .insert({ ...req.body, transaction_id });
       res.sendStatus(201);
     } catch (err) {
@@ -30,10 +30,10 @@ export const transaction = {
     }
   },
   update: async (req: Request, res: Response) => {
-    const { user_id, card_id, transaction_id } = req.params;
+    const { user_id, transaction_id } = req.params;
     try {
       await database('transactions')
-        .where({ user_id, card_id, transaction_id })
+        .where({ user_id, transaction_id })
         .update(req.body);
       res.sendStatus(200);
     } catch (err) {
@@ -41,10 +41,10 @@ export const transaction = {
     }
   },
   delete: async (req: Request, res: Response) => {
-    const { user_id, card_id, transaction_id } = req.params;
+    const { user_id, transaction_id } = req.params;
     try {
       await database('transactions')
-        .where({ user_id, card_id, transaction_id })
+        .where({ user_id, transaction_id })
         .del();
       res.sendStatus(200);
     } catch (err) {
