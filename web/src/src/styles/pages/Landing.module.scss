@@ -1,0 +1,119 @@
+.landingContainer {
+  background-color: var(--primary-dark);
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .landingContainer > div {
+    padding: 3rem 2rem;
+
+    div {
+      img {
+        width: 100%;
+        margin: 1.5rem 0;
+        animation: slideDown 1.25s;
+      }
+
+      h1 {
+        line-height: 2.5rem;
+        padding: 1rem 0;
+        cursor: default;
+        animation: slideRight 1.5s;
+      }
+
+      p {
+        padding: 1.5rem 0;
+        position: relative;
+        bottom: 1.5rem;
+        cursor: default;
+        animation: slideRight 1.75s;
+      }
+
+      a {
+        text-decoration: none;
+        text-align: center;
+        color: #fff;
+        font-weight: 700;
+        animation: slideRight 2s;
+
+        background-color: #121212;
+        padding: 1rem 3rem;
+        max-width: 160px;
+        border-radius: 2rem;
+        box-shadow: 0px 4px 10px rgba(#000, 0.5);
+      }
+    }
+  }
+
+  .landingContainer > div > img {
+    max-width: 180px;
+    width: 60%;
+    animation: slideDown 1s;
+  }
+}
+
+@media screen and (min-width: 440px) {
+  .landingContainer {
+    width: 100vw;
+
+    div > div > img {
+      width: 100%;
+      height: 500px;
+    }
+  }
+}
+
+@media screen and (min-width: 770px) {
+  .landingContainer {
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    div {
+      max-width: 1280px;
+
+      div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        direction: rtl;
+
+        img {
+          margin: 0;
+          padding: 1rem;
+        }
+
+        div {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          direction: ltr;
+        }
+      }
+    }
+  }
+}
