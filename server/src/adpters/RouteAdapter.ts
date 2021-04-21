@@ -15,6 +15,13 @@ export const makeRoute = (controller: BaseController) => (
         console.log(error);
         response.status(500).send(error);
       }
+    } else {
+      validate = {
+        statusCode: 200,
+        body: {
+          message: '',
+        },
+      };
     }
     if (validate.statusCode >= 200 && validate.statusCode < 299) {
       try {
