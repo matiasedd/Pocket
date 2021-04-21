@@ -1,4 +1,4 @@
-# Referência da Arquitetura de Backend - v1.0.0
+# Referência da Arquitetura de Backend - v1.0.1
 
 ## Motivação
 
@@ -8,7 +8,7 @@
 
 ### Router
 
-- É encarregada de definir as rotas da API e invocar suas respectivas controllers.
+- É encarregada de definir as rotas da API e invocar suas respectivas controllers e middlewares.
 - Todo router implementa a interface BaseRouter.
 
 ### Controller
@@ -18,7 +18,7 @@
 
 ### Validator
 
-- Tem a função de fazer a validação inicial dos dados recebidos na requisição durante a execução de uma controller. Se a validação falhar, encerra a requisição enviando a resposta adequada de falha.
+- Um validator é uma função que se encarrega de fazer a validação inicial dos dados recebidos na requisição durante a execução de uma controller. Se a validação falhar, encerra a requisição enviando a resposta adequada de falha.
 - Um validator pode adicionar dados no corpo da requisição conforme necessitar, que serão passados adiante.
 
 ### Middleware
@@ -27,12 +27,12 @@
 
 ### Repository
 
-- Classes que oferecem métodos para interagir (ler, inserir, atualizar, excluir) com as entidades, funções estas que serão usadas pela controller.
+- Classes que oferecem métodos para interagir (ler, inserir, atualizar, excluir) com as entidades. Estes métodos serão usados pela controller.
 
 ### Model
 
 - Contém a definição das classes das entidades do sistema.
-- Todas as models do sistemas herdam da classe BaseModel.
+- Todas as models do sistema herdam da classe BaseModel.
 
 ### Entity
 
@@ -41,7 +41,7 @@
 
 ### Adapter
 
-- Tem a função de gerar uma função no padrão Node Express capaz de receber e enviar requisições em uma rota.
+- Tem a função de gerar uma função router no padrão Node Express capaz de receber e enviar requisições em uma rota.
 
 ## Descrição do fluxo de execução
 
