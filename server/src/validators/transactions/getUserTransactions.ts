@@ -1,5 +1,5 @@
-import { HttpRequest } from '../protocols/HttpRequest';
-import { UserRepository } from '../repositories/User';
+import { HttpRequest } from '../../protocols/HttpRequest';
+import { UserRepository } from '../../repositories/User';
 
 export const getUserTransactionsValidation = async (request: HttpRequest) => {
   const userRepo = new UserRepository();

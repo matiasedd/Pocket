@@ -1,5 +1,5 @@
 import { BaseController } from '../Base';
-import { getUserTransactionsValidation } from '../../validators/getUserTransactions';
+import { getUserTransactionsValidation } from '../../validators/transactions/getUserTransactions';
 import { TransactionRepository } from '../../repositories/Transaction';
 import { HttpResponse } from '../../protocols/HttpResponse';
 import { HttpRequest } from '../../protocols/HttpRequest';
