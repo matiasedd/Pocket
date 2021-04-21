@@ -10,8 +10,8 @@ export class TransactionRepository extends BaseRespository {
     return transaction;
   }
 
-  async readByUser(userId: string): Promise<Transaction[]> {
-    const transactions = await this.repo.find({ user: userId }) as unknown as Transaction[];
+  async readByUser(user: string): Promise<Transaction[]> {
+    const transactions = await this.repo.find({ user }) as unknown as Transaction[];
     return transactions;
   }
 

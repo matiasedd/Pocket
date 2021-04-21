@@ -3,7 +3,7 @@ import BaseModel from './Base';
 export default class Transaction extends BaseModel {
   id: string;
 
-  userId: string;
+  user: string;
 
   title: string;
 

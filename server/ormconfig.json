@@ -1,12 +1,13 @@
 {
   "type": "postgres",
-  "host": "localhost",
-  "port": 5433,
-  "username": "postgres",
+  "host": "db",
+  "port": 5432,
+  "username": "user",
   "password": "123",
   "database": "pocket",
   "synchronize": false,
   "logging": false,
+  "cache": "false",
   "entities": [
     "dist/database/entities/**/*.js"
   ],

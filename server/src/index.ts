@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import app from './App';
 
-const PORT = process.env.PORT || 3333;
+const PORT = process.env.PORT || 3000;
 const WAIT = 1;
 
 function main() {
