@@ -1,4 +1,4 @@
-# Referência da Arquitetura de Backend - v1.0.1
+# Referência da Arquitetura de Backend - v1.1.0
 
 ## Motivação
 
@@ -14,11 +14,11 @@
 ### Controller
 
 - Se encarrega de executar a lógica de uma função de negócio (ex: criar uma conta, atualizar ou remover um registro) realizando operações nos repositories e retornando a resposta da requisição.
-- Uma controller inicialmente invoca seu respectivo validator através do método _validate_, e executa a função de negócio através do método _handle_.
+- Uma controller inicialmente invoca seu respectivo validator através do método _validate_ (se for uma AssertiveController), e executa a função de negócio através do método _handle_.
 
 ### Validator
 
-- Um validator é uma função que se encarrega de fazer a validação inicial dos dados recebidos na requisição durante a execução de uma controller. Se a validação falhar, encerra a requisição enviando a resposta adequada de falha.
+- Um validator é uma função que se encarrega de fazer a validação inicial dos dados recebidos na requisição durante a execução de uma AssertiveController. Se a validação falhar, encerra a requisição enviando a resposta adequada de falha.
 - Um validator pode adicionar dados no corpo da requisição conforme necessitar, que serão passados adiante.
 
 ### Middleware
