@@ -5,10 +5,6 @@ import { HttpResponse } from '../../protocols/HttpResponse';
 import { HttpRequest } from '../../protocols/HttpRequest';
 
 export class GetUserTransactionsController extends BaseController {
-  constructor() {
-    super(getUserTransactionsValidation);
-  }
-
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const transactionRepo = new TransactionRepository();
     const { userId } = request.params;
