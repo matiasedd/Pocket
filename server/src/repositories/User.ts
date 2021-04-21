@@ -10,8 +10,8 @@ export class UserRepository extends BaseRespository {
     return user;
   }
 
-  async readByEmail(userEmail: string): Promise<User[]> {
-    const users = await this.repo.find({ userEmail }) as unknown as User[];
+  async readByEmail(email: string): Promise<User[]> {
+    const users = await this.repo.find({ email }) as unknown as User[];
     return users;
   }
 
