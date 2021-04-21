@@ -13,6 +13,7 @@ export const makeRoute = (controller: BaseController) => (
         validate = await controller.validate(request as HttpRequest);
       } catch (error) {
         console.log(error);
+        console.log('fucking brooookkeeeee');
         response.status(500).send(error);
       }
     } else {

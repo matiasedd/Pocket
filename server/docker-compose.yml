@@ -5,7 +5,7 @@ services:
     build: .
     depends_on:
       - db
-    command: yarn start
+    command: yarn dev
     ports:
       - "3000:3000"
     volumes:

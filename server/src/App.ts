@@ -2,19 +2,15 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import routers from './routes';
+import { createUsers } from './database/seeds/CreateUsers';
 
-class App {
+export class PocketApp {
   public app: express.Application;
 
   constructor() {
     this.app = express();
     this.config();
-    // Initialize routes groups:
-    // TODO: add all routing classes to index.ts array
-    // TODO: make all routing classes inherit from generic routing class
-    routers.forEach((router) => {
-      router.loadRoutes(this.app);
-    });
+    this.loadRoutes();
   }
 
   private config(): void {
@@ -22,6 +18,15 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(cors());
   }
-}
 
-export default new App().app;
+  private loadRoutes(): void {
+    routers.forEach((router) => {
+      router.loadRoutes(this.app);
+    });
+  }
+
+  public async runSeeds(): Promise<void> {
+    console.log('running seeds');
+    await createUsers();
+  }
+}
