@@ -5,11 +5,10 @@ import {
   Poppins_400Regular as PoppinsRegular,
   Poppins_700Bold as PoppinsBold,
 } from "@expo-google-fonts/poppins";
-
-import Landing from "./src/screens/Landing";
+import Routes from "./src/routes";
 
 export default function App() {
   const [loadedFonts] = useFonts({ PoppinsRegular, PoppinsBold });
 
-  return loadedFonts ? <Landing /> : <AppLoading />;
+  return loadedFonts ? <Routes /> : <AppLoading />;
 }

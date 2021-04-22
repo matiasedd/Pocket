@@ -28,7 +28,7 @@ export const Button = styled.TouchableHighlight`
   background-color: #000;
   border-radius: 50px;
   height: 50px;
-  width: 200px;
+  width: 150px;
 
   align-items: center;
   justify-content: center;
