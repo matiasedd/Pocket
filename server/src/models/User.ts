@@ -1,13 +1,20 @@
-import BaseModel from './Base';
+import { Optional } from 'sequelize';
+import { BaseModel, BaseViewModel } from './Base';
 
-export default class User extends BaseModel {
-  id: string
-
+export interface UserViewModel extends BaseViewModel {
   email: string
 
   firstName: string
 
   lastName: string
+}
 
-  password: number
+export interface UserInputModel extends Optional<UserViewModel, 'id'|'createdAt'|'updatedAt'> {}
+
+export class UserModel extends BaseModel<UserViewModel, UserInputModel> {
+  email: string
+
+  firstName: string
+
+  lastName: string
 }

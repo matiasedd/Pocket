@@ -1,35 +1,44 @@
-import { getRepository } from 'typeorm';
-import User from '../models/User';
+import { UserViewModel, UserInputModel } from '../models/User';
+import { User } from '../database/entities';
 import { BaseRespository } from './Base';
 
 export class UserRepository extends BaseRespository {
-  private repo = getRepository('User');
-
-  async read(id: string): Promise<User> {
-    const user = await this.repo.findOne(id) as unknown as User;
+  async read(id: string): Promise<UserViewModel> {
+    const user = await User.findByPk(id);
     return user;
   }
 
-  async readByEmail(email: string): Promise<User[]> {
-    const users = await this.repo.find({ email }) as unknown as User[];
-    return users;
-  }
-
-  async insert(user: User): Promise<User> {
-    await this.repo.save(user);
+  async readByEmail(email: string): Promise<UserViewModel> {
+    const user = await User.findOne({ where: { email } });
     return user;
   }
 
-  async update(user: User): Promise<User> {
+  async insert(user: UserInputModel): Promise<UserViewModel> {
+    const createdUser = User.create(user);
+    return createdUser;
+  }
+
+  async update(updatedUser: UserViewModel): Promise<UserViewModel> {
+    const { id } = updatedUser;
+    const user = await User.findByPk(id);
+    Object.keys(user).map((key) => {
+      user[key] = updatedUser[key];
+      return null;
+    });
+    await user.save();
+    return user;
+  }
+
+  async delete(user: UserInputModel): Promise<boolean> {
     const { id } = user;
-    await this.repo.update({ id }, user);
-    return user;
+    const userExists = await User.findByPk(id);
+    await userExists.destroy();
+    return !!userExists;
   }
 
-  async delete(user: User): Promise<boolean> {
-    const { id } = user;
-    const userExists = !!(await this.repo.findOne({ id }));
-    await this.repo.delete({ id });
-    return userExists;
+  async deleteById(id: string): Promise<boolean> {
+    const userExists = await User.findByPk(id);
+    await userExists.destroy();
+    return !!userExists;
   }
 }

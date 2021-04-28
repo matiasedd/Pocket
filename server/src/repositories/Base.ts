@@ -1,11 +1,11 @@
-import BaseModel from '../models/Base';
+import { BaseViewModel } from '../models/Base';
 
 export abstract class BaseRespository {
-  abstract read(id: string): Promise<BaseModel>
+  abstract read(id: string): Promise<BaseViewModel>
 
-  abstract insert(entity: BaseModel): Promise<BaseModel>
+  abstract insert(entity: any): Promise<BaseViewModel>
 
-  abstract update(entity: BaseModel): Promise<BaseModel>
+  abstract update(entity: any): Promise<BaseViewModel>
 
-  abstract delete(entity: BaseModel): Promise<boolean>
+  abstract delete(entity: any): Promise<boolean>
 }

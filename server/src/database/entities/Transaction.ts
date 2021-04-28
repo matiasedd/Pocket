@@ -1,29 +1,46 @@
-import {
-  Entity, PrimaryGeneratedColumn, Column, ManyToOne,
-} from 'typeorm';
-import BaseEntity from './BaseEntity';
-import User from './User';
+import { DataTypes } from 'sequelize';
+import { TransactionInputModel, TransactionModel } from '../../models/Transaction';
+import { sequelize } from '../Sequelize';
+import { UserEntity } from './User';
 
-@Entity()
-export default class Transaction extends BaseEntity {
-  @ManyToOne(() => User)
-  user: string;
-
-  @Column({ name: 'title' })
-  title: string;
-
-  @Column({ name: 'value' })
-  value: number;
-
-  @Column({ name: 'category' })
-  category: string;
-
-  @Column({ name: 'type' })
-  type: string;
-
-  @Column({ name: 'description' })
-  description: string;
-
-  @Column({ name: 'is_fixed' })
-  isFixed: boolean;
-}
+export const TransactionEntity = sequelize.define<TransactionModel, TransactionInputModel>('Transaction', {
+  id: {
+    primaryKey: true,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+    field: 'soft_delete',
+  },
+  userId: {
+    type: DataTypes.UUID,
+    field: 'user_id',
+    references: {
+      model: UserEntity,
+      key: 'id',
+    },
+  },
+  title: {
+    type: DataTypes.STRING(80),
+  },
+  value: {
+    type: DataTypes.DECIMAL,
+  },
+  category: {
+    type: DataTypes.STRING(50),
+  },
+  type: {
+    type: DataTypes.STRING(8),
+  },
+  description: {
+    type: DataTypes.STRING(300),
+  },
+  isFixed: {
+    type: DataTypes.BOOLEAN,
+  },
+},
+{
+  freezeTableName: true,
+});

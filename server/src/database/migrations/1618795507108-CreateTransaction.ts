@@ -32,7 +32,7 @@ export class CreateTransaction1618795507108 implements MigrationInterface {
             default: false,
           },
           {
-            name: 'user',
+            name: 'userId',
             type: 'uuid',
           },
           {
@@ -69,7 +69,7 @@ export class CreateTransaction1618795507108 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'transaction',
       new TableForeignKey({
-        columnNames: ['user'],
+        columnNames: ['userId'],
         referencedTableName: 'user',
         referencedColumnNames: ['id'],
       }),

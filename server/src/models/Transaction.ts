@@ -1,19 +1,36 @@
-import BaseModel from './Base';
+import { Optional } from 'sequelize';
+import { BaseModel, BaseViewModel } from './Base';
 
-export default class Transaction extends BaseModel {
-  id: string;
+export interface TransactionViewModel extends BaseViewModel {
+  userId: string
 
-  user: string;
+  title: string
 
-  title: string;
+  value: number
 
-  value: number;
+  category: string
 
-  category: string;
+  type: string
 
-  type: string;
+  description: string
 
-  description: string;
+  isFixed: string
+}
 
-  isFixed: string;
+export interface TransactionInputModel extends Optional<TransactionViewModel, 'createdAt'|'updatedAt'> {}
+
+export class TransactionModel extends BaseModel<TransactionViewModel, TransactionInputModel> {
+  userId: string
+
+  title: string
+
+  value: number
+
+  category: string
+
+  type: string
+
+  description: string
+
+  isFixed: string
 }

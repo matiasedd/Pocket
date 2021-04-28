@@ -1,35 +1,45 @@
-import { getRepository } from 'typeorm';
-import Transaction from '../models/Transaction';
+import { TransactionInputModel, TransactionViewModel } from '../models/Transaction';
+import { Transaction } from '../database/entities';
 import { BaseRespository } from './Base';
 
 export class TransactionRepository extends BaseRespository {
-  private repo = getRepository('Transaction');
-
-  async read(id: string): Promise<Transaction> {
-    const transaction = await this.repo.findOne({ id }) as unknown as Transaction;
+  async read(id: string): Promise<TransactionViewModel> {
+    const transaction = await Transaction.findByPk(id);
     return transaction;
   }
 
-  async readByUser(user: string): Promise<Transaction[]> {
-    const transactions = await this.repo.find({ user }) as unknown as Transaction[];
+  async readByUser(userId: string): Promise<TransactionViewModel[]> {
+    const transactions = await Transaction.findAll({ where: { userId } });
     return transactions;
   }
 
-  async insert(transaction: Transaction): Promise<Transaction> {
-    await this.repo.save(transaction);
+  async insert(transaction: TransactionInputModel): Promise<TransactionViewModel> {
+    const brandNewTransaction = Transaction.build(transaction);
+    await brandNewTransaction.save();
+    return brandNewTransaction;
+  }
+
+  async update(updatedTransaction: TransactionInputModel): Promise<TransactionViewModel> {
+    const { id } = updatedTransaction;
+    const transaction = await Transaction.findByPk(id);
+    Object.keys(updatedTransaction).map((key) => {
+      transaction[key] = updatedTransaction[key];
+      return null;
+    });
+    await transaction.save();
     return transaction;
   }
 
-  async update(transaction: Transaction): Promise<Transaction> {
+  async delete(transaction: TransactionInputModel): Promise<boolean> {
     const { id } = transaction;
-    await this.repo.update({ id }, transaction);
-    return transaction;
+    const transactionExists = await Transaction.findByPk(id);
+    await transactionExists.destroy();
+    return !!transactionExists;
   }
 
-  async delete(transaction: Transaction): Promise<boolean> {
-    const { id } = transaction;
-    const transactionExists = !!(await this.repo.findOne({ id }));
-    await this.repo.delete({ id });
-    return transactionExists;
+  async deleteById(id: string): Promise<boolean> {
+    const transactionExists = await Transaction.findByPk(id);
+    await transactionExists.destroy();
+    return !!transactionExists;
   }
 }
