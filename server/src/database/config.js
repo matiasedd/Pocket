@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 module.exports = {
   development: {
     username: 'user',
@@ -9,11 +7,12 @@ module.exports = {
     dialect: 'postgres',
   },
   test: {
-    username: 'user',
+    username: 'postgres',
     password: '123',
-    database: 'pocket',
-    host: 'db',
+    database: 'pocket-tmp',
+    host: '127.0.0.1',
     dialect: 'postgres',
+    port: '5433',
   },
   production: {
     username: 'user',
