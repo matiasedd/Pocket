@@ -13,10 +13,9 @@ const users = [
 export async function createUsers() {
   const userRepo = new UserRepository();
   const userExists = await userRepo.readByEmail(users[0].email);
-  if (!userExists.length) {
+  if (!userExists) {
     console.log('User does not exist. Creating...');
-    const user = await userRepo.insert(users[0]);
-    console.log(user);
+    await userRepo.insert(users[0]);
   } else {
     console.log('User already exists:');
     console.log(userExists);
