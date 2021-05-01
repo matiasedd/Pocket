@@ -17,6 +17,7 @@
     "react/jsx-filename-extension": [2, { "extensions": [".ts", ".tsx"] }],
     "import/extensions": "off",
     "import/no-unresolved": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "linebreak-style": 0
   }
 }

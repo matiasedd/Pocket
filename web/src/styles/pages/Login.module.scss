@@ -1,5 +1,144 @@
 .loginContainer {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   place-items: center;
   height: 100vh;
+
+  section,
+  form,
+  label {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.loginContainer section:first-child {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("https://images.unsplash.com/photo-1554224155-3a58922a22c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1325&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  span {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2rem;
+  }
+}
+
+.loginContainer section:first-child > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  backdrop-filter: blur(5px);
+  animation: fade 1s ease;
+
+  a {
+    position: absolute;
+    left: 3rem;
+    top: 2rem;
+    width: 40px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.loginContainer section:last-child {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: default;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--blue);
+  }
+
+  input {
+    padding: 0.5rem 1rem;
+    border: 2px solid rgba(black, 0.1);
+    border-radius: 5px;
+  }
+
+  form span {
+    margin: 1rem 0;
+    font-weight: 500;
+    cursor: default;
+  }
+
+  form button {
+    height: 50px;
+    margin: 2rem 0;
+    background-color: rgba(black, 0.25);
+
+    border: none;
+    border-radius: 8px;
+
+    color: white;
+    font-weight: 700;
+
+    cursor: not-allowed;
+    transition: background-color 0.2s;
+  }
+
+  form button:not(:disabled) {
+    background-color: rgba(black, 1);
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+}
+
+.loginContainer section form a {
+  margin: 1.5rem 0;
+}
+
+.loginContainer section span {
+  cursor: default;
+
+  a {
+    margin-left: 1ch;
+  }
+}
+
+.toast {
+  padding: 1rem;
+  box-shadow: 0px 4px 10px rgba(black, 0.1);
+  border-bottom: 2px solid #df4c4c;
+
+  background-image: url('../../assets/icons/error.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  background-size: 24px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
