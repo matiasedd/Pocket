@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "../styles/pages/Landing.module.scss";
-import extendedLogo from "../assets/icons/extended-logo.svg";
-import landingImage from "../assets/images/landing-image.svg";
+import React from 'react';
+import styles from '../styles/pages/Landing.module.scss';
+import extendedLogo from '../assets/icons/extended-logo.svg';
+import landingImage from '../assets/images/landing-image.svg';
 
 const Landing: React.FC = () => (
   <div className={styles.landingContainer}>
@@ -15,7 +15,7 @@ const Landing: React.FC = () => (
             Com Pocket, seu planejamento financeiro fica muito mais fácil. Deixe
             as planihas de lado e planeja-se com Pocket!
           </p>
-          <a href="/">Entrar</a>
+          <a href="/login">Entrar</a>
         </div>
       </div>
     </div>
