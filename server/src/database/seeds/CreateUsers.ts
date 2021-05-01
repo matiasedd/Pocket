@@ -1,14 +1,5 @@
-import User from '../../models/User';
+import {UserModel} from '../../models/User';
 import { UserRepository } from '../../repositories/User';
-
-const users = [
-  {
-    email: 'murilo@email.com',
-    firstName: 'Murilo',
-    lastName: 'Matias',
-    password: '123',
-  },
-] as unknown as User[];
 
 export async function createUsers() {
   const userRepo = new UserRepository();

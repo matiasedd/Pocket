@@ -24,9 +24,4 @@ export class PocketApp {
       router.loadRoutes(this.app);
     });
   }
-
-  public async runSeeds(): Promise<void> {
-    console.log('running seeds');
-    await createUsers();
-  }
 }

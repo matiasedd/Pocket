@@ -1,6 +1,14 @@
 import { Sequelize } from 'sequelize';
+import dbConfig from './config.js';
 
-export const sequelize = new Sequelize('pocket', 'user', '123', {
+const env = process.env.NODE_ENV || 'development';
+
+export const sequelize = new Sequelize(
+  dbConfig[env].database, 
+  dbConfig[env].username, 
+  dbConfig[env].password, 
+  {
   dialect: 'postgres',
-  host: '/db',
-});
+    host: dbConfig[env].host,
+  }
+);

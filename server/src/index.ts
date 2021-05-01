@@ -1,20 +1,16 @@
 // require("dotenv-safe").config();
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
 import { PocketApp } from './App';
 
 const PORT = process.env.PORT || 3000;
-const WAIT = 1;
+const WAIT = 2;   // Tempo de esperar para iniciar o servidor
 
 function main() {
   try {
-    createConnection().then(async () => {
       const pocketApp = new PocketApp();
-      await pocketApp.runSeeds();
       pocketApp.app.listen(PORT, async () => {
         console.log(`Server running on port ${PORT}`);
       });
-    });
   } catch (e) {
     console.log(e);
   }
