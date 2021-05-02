@@ -7,11 +7,9 @@
   "author": "Edison Matias",
   "license": "MIT",
   "scripts": {
-    "dev": "sequelize-cli db:migrate; ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "sequelize-cli db:migrate; sequelize-cli db:seed:all; ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "rm -rf dist; tsc",
     "start": "sequelize-cli db:migrate; node dist/index.js",
-    "migration:revert": "sequelize-cli db:migrate:undo",
-    "migration:run": "sequelize-cli db:migrate",
     "docker:test:create": "docker run --name pocket_test -e POSTGRES_PASSWORD=123 -p 5433:5432 -d postgres",
     "docker:test:clear": "docker stop pocket_test; docker rm pocket_test"
   },
