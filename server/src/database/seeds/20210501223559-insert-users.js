@@ -1,21 +1,20 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    const a = 1;
     return queryInterface.bulkInsert('User', [
       {
-        id: '84b93cbb-1b0e-4c14-8851-19b33f0a4a77',   // ...because Sequelize's STUPID bulkInsert does not FUCKING handle defaultValue for uuid
+        id: '7396a129-5cec-48bd-b15f-102aadcde7db',
         first_name: 'John',
         last_name: 'Doe',
         email: 'john.doe@email.com',
       },
       {
-        id: '152fdf88-e81d-41b0-b393-de7eb967fd41',
+        id: '9ac980c4-6e14-46f9-9dea-59fd256e5936',
         first_name: 'Jane',
         last_name: 'Doe',
         email: 'jane.doe@example.com',
-      }
-    ])
+      },
+    ]);
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -25,5 +24,5 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-  }
+  },
 };

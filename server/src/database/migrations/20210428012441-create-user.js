@@ -3,7 +3,8 @@ module.exports = {
     id: {
       primaryKey: true,
       type: Sequelize.DataTypes.UUID,
-      defaultValue: Sequelize.DataTypes.UUIDV4,
+      defaultValue: Sequelize.DataTypes.UUIDV4
+      ,
     },
     soft_delete: {
       type: Sequelize.DataTypes.BOOLEAN,
@@ -21,6 +22,16 @@ module.exports = {
     last_name: {
       type: Sequelize.DataTypes.STRING,
       allowNull: false,
+    },
+    created_at: {
+      type: Sequelize.DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
+    },
+    updated_at: {
+      type: Sequelize.DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
     },
   }),
 

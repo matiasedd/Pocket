@@ -3,14 +3,14 @@ import 'reflect-metadata';
 import { PocketApp } from './App';
 
 const PORT = process.env.PORT || 3000;
-const WAIT = 2;   // Tempo de esperar para iniciar o servidor
+const WAIT = 2; // Tempo de esperar para iniciar o servidor
 
 function main() {
   try {
-      const pocketApp = new PocketApp();
-      pocketApp.app.listen(PORT, async () => {
-        console.log(`Server running on port ${PORT}`);
-      });
+    const pocketApp = new PocketApp();
+    pocketApp.app.listen(PORT, async () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   } catch (e) {
     console.log(e);
   }

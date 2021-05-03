@@ -8,6 +8,11 @@ export class UserRepository extends BaseRespository {
     return user;
   }
 
+  async readAll(): Promise<UserViewModel[]> {
+    const users = await User.findAll({});
+    return users;
+  }
+
   async readByEmail(email: string): Promise<UserViewModel> {
     const user = await User.findOne({ where: { email } });
     return user;

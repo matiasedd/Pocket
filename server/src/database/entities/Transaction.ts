@@ -43,4 +43,7 @@ export const TransactionEntity = sequelize.define<TransactionModel, TransactionI
 },
 {
   freezeTableName: true,
+  timestamps: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
 });
