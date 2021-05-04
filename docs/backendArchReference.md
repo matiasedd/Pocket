@@ -1,4 +1,4 @@
-# Referência da Arquitetura de Backend - v1.1.0
+# Referência da Arquitetura de Backend - v1.2.0
 
 ## Motivação
 
@@ -37,7 +37,6 @@
 ### Entity
 
 - Contém as definições das tabelas que são criadas para manter as entidades no banco de dados através do ORM.
-- Todas as entities do sistemas herdam da BaseEntity.
 
 ### Adapter
 
