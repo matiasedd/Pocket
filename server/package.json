@@ -11,7 +11,8 @@
     "build": "rm -rf dist; tsc",
     "start": "sequelize-cli db:migrate; node dist/index.js",
     "docker:test:create": "docker run --name pocket_test -e POSTGRES_PASSWORD=123 -p 5433:5432 -d postgres",
-    "docker:test:clear": "docker stop pocket_test; docker rm pocket_test"
+    "docker:test:clear": "docker stop pocket_test; docker rm pocket_test",
+    "test:unit": "node_modules/.bin/mocha tests/unit/**/*.spec.js --require babel-register"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -37,9 +38,13 @@
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.3.4",
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.3.2",
     "prettier": "^2.2.1",
     "sequelize-cli": "^6.2.0",
     "ts-node-dev": "^1.1.6",
