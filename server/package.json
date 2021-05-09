@@ -8,9 +8,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "sequelize-cli db:migrate; sequelize-cli db:seed:all; ts-node-dev --respawn --transpile-only src/index.ts",
+    "test": "sequelize-cli db:migrate --env=test; sequelize-cli db:seed:all --env=test; ts-node-dev --respawn --transpile-only src/index.ts --NODE_ENV=test",
     "build": "rm -rf dist; tsc",
     "start": "sequelize-cli db:migrate; node dist/index.js",
-    "docker:test:create": "docker run --name pocket_test -e POSTGRES_PASSWORD=123 -p 5433:5432 -d postgres",
+    "docker:test:create": "docker run --name pocket_test -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=pocket_test -e POSTGRES_USER=user -p 5433:5432 -d postgres",
     "docker:test:clear": "docker stop pocket_test; docker rm pocket_test",
     "test:unit": "node_modules/.bin/mocha tests/unit/**/*.spec.js --require babel-register"
   },
