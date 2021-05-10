@@ -4,6 +4,9 @@ import { BaseAssertiveController } from '../controllers/BaseAssertive';
 import { HttpRequest } from '../protocols/HttpRequest';
 import { ErrorHttpResponse, HttpResponse } from '../protocols/HttpResponse';
 
+/* Importante: os blocos try/catch visam capturar erros inesperados,
+não relacionados ao validator da controller */
+
 export const makeRoute = (controller: BaseController) => (
   async (request: Request, response: Response) => {
     let validate = <ErrorHttpResponse>{};
@@ -12,8 +15,6 @@ export const makeRoute = (controller: BaseController) => (
       try {
         validate = await controller.validate(request as HttpRequest);
       } catch (error) {
-        console.log(error);
-        console.log('fucking brooookkeeeee');
         response.status(500).send(error);
       }
     } else {
