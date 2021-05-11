@@ -7,17 +7,25 @@
   "author": "Edison Matias",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "sequelize-cli db:migrate; sequelize-cli db:seed:all; ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "rm -rf dist; tsc",
-    "start": "node dist/index.js"
+    "start": "sequelize-cli db:migrate; node dist/index.js",
+    "docker:test:create": "docker run --name pocket_test -e POSTGRES_PASSWORD=123 -p 5433:5432 -d postgres",
+    "docker:test:clear": "docker stop pocket_test; docker rm pocket_test"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.95.4",
     "mysql": "^2.18.1",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.6.2",
+    "typeorm": "^0.2.32",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -25,6 +33,7 @@
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.37",
+    "@types/sequelize": "^4.28.9",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
@@ -32,6 +41,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "prettier": "^2.2.1",
+    "sequelize-cli": "^6.2.0",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.4"
   }
