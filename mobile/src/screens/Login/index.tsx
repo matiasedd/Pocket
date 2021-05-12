@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from './style';
 
-export function Login(){
+export default function Login() {
   return (
     <Container />
-  )
+  );
 }
