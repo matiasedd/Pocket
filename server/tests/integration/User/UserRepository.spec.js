@@ -1,7 +1,18 @@
 /* eslint-disable no-undef */
+
+const BASE_UUID = 'ddf2364c-771b-4045-9d01-9c133d998c83';
+const ANOTHER_UUID = '402318ba-b41b-424f-884c-016c015fec54';
+
 describe('Class: User repository', () => {
   context('Reading users', () => {
     describe('read(id)', () => {
+      beforeEach(async () => {
+        console.log('beforeEach');
+      });
+
+      afterEach(async () => {
+        console.log('afterEach');
+      });
       it('should return a user when the id exists', () => {
 
       });
