@@ -13,7 +13,7 @@
     "start": "sequelize-cli db:migrate; node dist/index.js",
     "docker:test:create": "docker run --name pocket_test -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=pocket_test -e POSTGRES_USER=user -p 5433:5432 -d postgres",
     "docker:test:clear": "docker stop pocket_test; docker rm pocket_test",
-    "test:unit": "node_modules/.bin/mocha tests/unit/**/*.spec.js --require babel-register"
+    "test:unit": "node_modules/.bin/mocha -r ts-node/register tests/unit/**/*.spec.js --require babel-register"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -32,8 +32,10 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.1",
+    "@types/chai": "^4.2.18",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
+    "@types/mocha": "^8.2.2",
     "@types/node": "^14.14.37",
     "@types/sequelize": "^4.28.9",
     "@types/uuid": "^8.3.0",
