@@ -29,7 +29,7 @@ export const Subtitle = styled.Text`
   color: ${colors.light.text_on_primary};
 `;
 
-export const Button = styled.TouchableHighlight`
+export const Button = styled.TouchableOpacity`
   background-color: #000;
   border-radius: 50px;
   height: 50px;

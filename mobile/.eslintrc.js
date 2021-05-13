@@ -21,6 +21,7 @@ module.exports = {
   ],
   rules: {
     camelcase: 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
     'no-use-before-define': 'off',
     'import/no-unresolved': 'off',
     'react/style-prop-object': 'off',
