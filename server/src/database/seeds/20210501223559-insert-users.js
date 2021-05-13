@@ -17,12 +17,7 @@ module.exports = {
     ]);
   },
 
-  down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  },
+  down: async (queryInterface, Sequelize) => queryInterface.bulkDelete('User', { id: '7396a129-5cec-48bd-b15f-102aadcde7db' }).then(() => {
+    queryInterface.bulkDelete('User', { id: '9ac980c4-6e14-46f9-9dea-59fd256e5936' });
+  }),
 };
