@@ -1,7 +1,8 @@
 import { HttpRequest } from '../../protocols/HttpRequest';
 import { UserRepository } from '../../repositories/User';
+import { ControllerValidator } from '../Base';
 
-export const getUserTransactionsValidation = async (request: HttpRequest) => {
+export const getUserTransactionsValidator: ControllerValidator = async (request: HttpRequest) => {
   const userRepo = new UserRepository();
   const { userId } = request.params;
   const userExists = await userRepo.read(userId);
