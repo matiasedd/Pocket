@@ -3,6 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Landing from '../screens/Landing';
 import Login from '../screens/Login';
+import SignIn from '../screens/SignIn';
+
 import fonts from '../assets/fonts';
 
 export default function StackRoute() {
@@ -21,6 +23,16 @@ export default function StackRoute() {
         options={{
           headerTitleAlign: 'center',
           headerTitle: 'Entrar na conta',
+          headerStyle: { elevation: 0 },
+          headerTitleStyle: { fontFamily: fonts.regular },
+        }}
+      />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{
+          headerTitleAlign: 'center',
+          headerTitle: 'Criar conta',
           headerStyle: { elevation: 0 },
           headerTitleStyle: { fontFamily: fonts.regular },
         }}
