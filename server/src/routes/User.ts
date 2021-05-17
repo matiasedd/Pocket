@@ -1,7 +1,6 @@
 import { Application } from 'express';
 import { makeRoute } from '../adpters/RouteAdapter';
-import { GetAllUsersController } from '../controllers/user/getAllUsers';
-import { auth } from '../middlewares/Auth';
+import { GetAllUsersController } from '../controllers/user/GetAllUsers';
 import { UserRepository } from '../repositories/User';
 import { BaseRouter } from './base';
 

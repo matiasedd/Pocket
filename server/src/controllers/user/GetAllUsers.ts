@@ -12,7 +12,6 @@ export class GetAllUsersController extends BaseController {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const userRepo = new UserRepository();
     const users = await this.userRepository.readAll();
     return {
       statusCode: 200,

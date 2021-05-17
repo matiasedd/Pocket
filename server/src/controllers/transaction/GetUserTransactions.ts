@@ -13,9 +13,8 @@ export class GetUserTransactionsController extends BaseAssertiveController {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const transactionRepo = new TransactionRepository();
     const { userId } = request.params;
-    const transactions = await transactionRepo.readByUser(userId);
+    const transactions = await this.transactionRepository.readByUser(userId);
     return {
       statusCode: 200,
       body: transactions,
