@@ -28,5 +28,6 @@ module.exports = {
     'no-unused-vars': 'warn',
     camelcase: 'off',
     'no-unused-expressions': 'off',
+    'max-len': ['error', { code: 200 }],
   },
 };
