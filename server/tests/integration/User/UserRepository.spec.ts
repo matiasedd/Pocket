@@ -17,11 +17,11 @@ describe('Class: User repository', () => {
 
       });
 
-      it('should return an empty object when the id does not exist', () => {
+      it('should return null when the id does not exist', () => {
 
       });
 
-      it('should return an empty object when no id is passed', () => {
+      it('should return null object when no id is passed', () => {
 
       });
     });
@@ -31,11 +31,11 @@ describe('Class: User repository', () => {
 
       });
 
-      it('should return an empty object when the email does not exist', () => {
+      it('should return null when the email does not exist', () => {
 
       });
 
-      it('should return an empty object when no email is passed', () => {
+      it('should return null when no email is passed', () => {
 
       });
     });
