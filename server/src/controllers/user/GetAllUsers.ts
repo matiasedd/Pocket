@@ -1,4 +1,3 @@
-import { HttpRequest } from '../../protocols/HttpRequest';
 import { HttpResponse } from '../../protocols/HttpResponse';
 import { UserRepository } from '../../repositories/User';
 import { BaseController } from '../Base';
@@ -11,7 +10,7 @@ export class GetAllUsersController extends BaseController {
     this.userRepository = repository;
   }
 
-  async handle(request: HttpRequest): Promise<HttpResponse> {
+  async handle(): Promise<HttpResponse> {
     const users = await this.userRepository.readAll();
     return {
       statusCode: 200,
