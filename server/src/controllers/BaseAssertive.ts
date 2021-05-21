@@ -1,18 +1,17 @@
 import { HttpRequest } from '../protocols/HttpRequest';
 import { ErrorHttpResponse, HttpResponse } from '../protocols/HttpResponse';
+import { ControllerValidator } from '../validators/Base';
 import { BaseController } from './Base';
 
-type Validator = (par: HttpRequest) => Promise<HttpResponse | ErrorHttpResponse>
-
 export abstract class BaseAssertiveController extends BaseController {
-  constructor(validator: Validator) {
+  constructor(validator: ControllerValidator) {
     super();
     this.validator = validator;
   }
 
-  private validator: Validator
+  private validator: ControllerValidator
 
-  async validate(request: HttpRequest): Promise<HttpResponse | ErrorHttpResponse> {
+  async validate(request?: HttpRequest): Promise<HttpResponse | ErrorHttpResponse> {
     const validation = await this.validator(request);
     return validation;
   }
