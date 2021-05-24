@@ -14,7 +14,7 @@ export interface TransactionViewModel extends BaseViewModel {
 
   description: string
 
-  isFixed: string
+  isFixed: boolean
 }
 
 export interface TransactionInputModel extends Optional<TransactionViewModel, 'createdAt'|'updatedAt'> {}
@@ -32,5 +32,5 @@ export class TransactionModel extends BaseModel<TransactionViewModel, Transactio
 
   description: string
 
-  isFixed: string
+  isFixed: boolean
 }

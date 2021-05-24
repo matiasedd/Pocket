@@ -1,10 +1,10 @@
 import { HttpRequest } from '../../protocols/HttpRequest';
 import { UserRepository } from '../../repositories/User';
+import { ControllerValidator } from '../Base';
 
-export const getUserTransactionsValidation = async (request: HttpRequest) => {
-  const userRepo = new UserRepository();
+export const getUserTransactionsValidator: ControllerValidator = async (request: HttpRequest, userRepository: UserRepository) => {
   const { userId } = request.params;
-  const userExists = await userRepo.read(userId);
+  const userExists = await userRepository.read(userId);
   if (userExists) {
     return {
       statusCode: 200,

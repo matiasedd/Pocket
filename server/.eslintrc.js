@@ -27,5 +27,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'warn',
     camelcase: 'off',
+    'no-unused-expressions': 'off',
+    'max-len': ['error', { code: 200 }],
   },
 };
