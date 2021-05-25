@@ -25,6 +25,9 @@ module.exports = {
     'import/extensions': 'off',
     'class-methods-use-this': 'off',
     'import/prefer-default-export': 'off',
+    'no-unused-vars': 'warn',
     camelcase: 'off',
+    'no-unused-expressions': 'off',
+    'max-len': ['error', { code: 200 }],
   },
 };
