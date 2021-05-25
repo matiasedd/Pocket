@@ -39,7 +39,7 @@ const Landing: React.FC = () => {
         <h1>Entre com sua conta</h1>
         <form action="#" method="post">
           <label htmlFor="email">
-            <span>Email:</span>
+            <span>Email</span>
             <input
               type="email"
               id="email"
@@ -49,7 +49,7 @@ const Landing: React.FC = () => {
             />
           </label>
           <label htmlFor="pass">
-            <span>Senha:</span>
+            <span>Senha</span>
             <input
               type="password"
               id="pass"
