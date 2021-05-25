@@ -3,7 +3,7 @@ import { makeRoute } from '../adpters/RouteAdapter';
 import { GetUserTransactionsController } from '../controllers/transaction/GetUserTransactions';
 import { auth } from '../middlewares/Auth';
 import { TransactionRepository } from '../repositories/Transaction';
-import { getUserTransactionsValidator } from '../validators/transactions/getUserTransactions';
+import { getUserTransactionsValidator } from '../validators/transactions/GetUserTransactions';
 import { BaseRouter } from './base';
 
 export class TransactionRoutes implements BaseRouter {
