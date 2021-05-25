@@ -2,31 +2,6 @@
 
 ## Usuários
 
-<strong>GET Users</strong> - <em>Listar todos os usuários cadastrados.</em>
-
-```
-GET http://localhost:3333/users
-```
-
-Resposta esperdada:
-
-```
-[
-  {
-    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
-    "first_name": "Edison",
-    "last_name": "Matias",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  },
-  {
-    "user_id": "27e84daa-d56f-4d4f-be19-779eb19e99aa",
-    "first_name": "Murilo",
-    "last_name": "Henrique",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  }
-]
-```
-
 <strong>GET User</strong> - <em>Listar um usuário específico a partir de seu ID.</em>
 
 ```
@@ -37,10 +12,10 @@ Resposta esperdada:
 
 ```
 {
-  "user_id": "27e84daa-d56f-4d4f-be19-779eb19e99aa",
+  "user_id": "27e84daa-d56f-4d4f-be19-779eb19e99aa", //uuidv4
   "first_name": "Murilo",
   "last_name": "Henrique",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." // JWT
 }
 ```
 
@@ -57,7 +32,8 @@ Body:
   "first_name": "Edison",
   "last_name": "Matias",
   "email": "edison.matias@gmail.com",
-  "password": "loremipsum"
+  "password": "loremipsum",
+  "confirm_password: "loremipsum"
 }
 ```
 
@@ -68,7 +44,7 @@ Resposta esperada:
   "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6", //uuidv4
   "first_name": "Edison",
   "last_name": "Matias",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." //JWT
 }
 ```
 
@@ -93,7 +69,7 @@ Resposta esperada:
   "user_id": "27e84daa-d56f-4d4f-be19-779eb19e99aa",
   "first_name": "Murilo",
   "last_name": "Gomes",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
