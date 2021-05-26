@@ -8,6 +8,8 @@ import { UserRepository } from '../repositories/User';
 import { getUserValidator } from '../validators/users/GetUser';
 import { addUserValidator } from '../validators/users/AddUser';
 import { BaseRouter } from './base';
+import { UpdateUserController } from '../controllers/user/UpdateUser';
+import { updateUserValidator } from '../validators/users/UpdateUser';
 
 export class UserRoutes implements BaseRouter {
   // TODO: change 'routes' to a better, most descriptive name
@@ -15,5 +17,6 @@ export class UserRoutes implements BaseRouter {
     app.get('/users', makeRoute(new GetAllUsersController(new UserRepository())));
     app.get('/users/:userId', auth, makeRoute(new GetUserController(getUserValidator, new UserRepository())));
     app.post('/users', makeRoute(new AddUserController(addUserValidator, new UserRepository())));
+    app.put('/users/:userId', auth, makeRoute(new UpdateUserController(updateUserValidator, new UserRepository())));
   }
 }

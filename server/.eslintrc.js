@@ -29,5 +29,6 @@ module.exports = {
     camelcase: 'off',
     'no-unused-expressions': 'off',
     'max-len': ['error', { code: 200 }],
+    'no-return-assign': 'off',
   },
 };
