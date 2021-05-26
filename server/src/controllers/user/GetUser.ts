@@ -13,8 +13,8 @@ export class GetUserController extends BaseAssertiveController {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { userEmail } = request;
-    const user = await this.userRepository.readByEmail(userEmail);
+    const { userId } = request.params;
+    const user = await this.userRepository.read(userId);
     return {
       statusCode: 200,
       body: user,
