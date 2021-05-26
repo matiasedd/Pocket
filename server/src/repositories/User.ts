@@ -1,6 +1,8 @@
 import { UserViewModel, UserInputModel } from '../models/User';
 import { User } from '../database/entities';
 import { BaseRespository } from './Base';
+import { UserPassword } from '../database/entities/UserPassword';
+import { UserPasswordInputModel } from '../models/UserPassword';
 
 export class UserRepository extends BaseRespository {
   async read(id: string): Promise<UserViewModel> {
@@ -45,5 +47,14 @@ export class UserRepository extends BaseRespository {
     const userExists = await User.findByPk(id);
     await userExists.destroy();
     return !!userExists;
+  }
+
+  async insertPassword(password: UserPasswordInputModel) {
+    const createdPassword = await UserPassword.create(password);
+    return createdPassword;
+  }
+
+  async getPassword(id: string): Promise<string> {
+
   }
 }
