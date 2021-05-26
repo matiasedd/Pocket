@@ -2,9 +2,11 @@ import { Application } from 'express';
 import { makeRoute } from '../adpters/RouteAdapter';
 import { GetAllUsersController } from '../controllers/user/GetAllUsers';
 import { GetUserController } from '../controllers/user/GetUser';
+import { AddUserController } from '../controllers/user/AddUser';
 import { auth } from '../middlewares/Auth';
 import { UserRepository } from '../repositories/User';
 import { getUserValidator } from '../validators/users/GetUser';
+import { addUserValidator } from '../validators/users/AddUser';
 import { BaseRouter } from './base';
 
 export class UserRoutes implements BaseRouter {
@@ -12,5 +14,6 @@ export class UserRoutes implements BaseRouter {
   public loadRoutes(app: Application): void {
     app.get('/users', makeRoute(new GetAllUsersController(new UserRepository())));
     app.get('/users/:userId', auth, makeRoute(new GetUserController(getUserValidator, new UserRepository())));
+    app.post('/users', makeRoute(new AddUserController(addUserValidator, new UserRepository())));
   }
 }
