@@ -18,4 +18,4 @@
 
 ### Testes unitários
 
-- Para rodar os testes unitários, utilize o comando `test`.
+- Para rodar os testes unitários, utilize o comando `test:unit`, e para rodar os testes de integração, utilize o comando `test:integration`.
