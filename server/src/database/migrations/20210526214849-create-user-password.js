@@ -11,7 +11,7 @@ module.exports = {
         defaultValue: false,
       },
       user_id: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.DataTypes.UUID,
         allowNull: false,
       },
       created_at: {

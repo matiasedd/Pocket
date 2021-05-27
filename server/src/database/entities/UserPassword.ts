@@ -10,7 +10,7 @@ export const UserPassword = sequelize.define<UserPasswordModel, UserPasswordInpu
     allowNull: false,
   },
   userId: {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     field: 'user_id',
     references: {
       model: UserEntity,
