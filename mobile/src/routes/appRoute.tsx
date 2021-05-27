@@ -7,7 +7,7 @@ import SignIn from '../screens/SignIn';
 
 import fonts from '../assets/fonts';
 
-export default function StackRoute() {
+export default function AppRoute() {
   const Stack = createStackNavigator();
 
   return (
