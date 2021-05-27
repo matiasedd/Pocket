@@ -3,15 +3,15 @@ module.exports = {
     queryInterface.createTable('UserPassword', {
       id: {
         primaryKey: true,
-        type: Sequelize.DataTypes.UUID,
-        defaultValue: Sequelize.DataTypes.UUIDV4,
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
       },
       soft_delete: {
         type: Sequelize.DataTypes.BOOLEAN,
         defaultValue: false,
       },
       user_id: {
-        type: Sequelize.DataTypes.UUID,
+        type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
       created_at: {
