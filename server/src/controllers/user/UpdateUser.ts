@@ -13,7 +13,7 @@ export class UpdateUserController extends BaseAssertiveController {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { userId } = request.params;
+    const { userId } = request;
     const attrsToUpdate = { ...request.body };
     const user = await this.userRepository.read(userId);
     Object.keys(attrsToUpdate).map((key) => user[key] = attrsToUpdate[key]);

@@ -13,7 +13,6 @@ import { DeleteUserController } from '../controllers/user/DeleteUser';
 import { deleteUserValidator } from '../validators/users/DeleteUser';
 
 export class UserRoutes implements BaseRouter {
-  // TODO: change 'routes' to a better, most descriptive name
   public loadRoutes(app: Application): void {
     app.get('/users/:userId', auth, makeRoute(new GetUserController(getUserValidator, new UserRepository())));
     app.post('/users', makeRoute(new AddUserController(addUserValidator, new UserRepository())));
