@@ -1,0 +1,62 @@
+[
+  {
+    "transaction_id": "9dea2da1-e5d7-462d-a372-c9df3a05df37",
+    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+    "title": "Compras do mês",
+    "category": "Mercado",
+    "value": -224.85,
+    "type": "expense",
+    "description": null,
+    "is_fixed": false,
+    "created_at": "2021-04-15T12:00:00.000Z",
+    "updated_at": "2021-04-15T12:00:00.000Z"
+  },
+  {
+    "transaction_id": "b4c5a5b1-d115-4021-84a2-987445871173",
+    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+    "title": "Empréstimo",
+    "category": "Empréstimos",
+    "value": 550,
+    "type": "income",
+    "description": "Financiamento",
+    "is_fixed": false,
+    "created_at": "2021-04-15T12:00:00.000Z",
+    "updated_at": "2021-04-15T12:00:00.000Z"
+  },
+  {
+    "transaction_id": "e4ade92e-7157-466f-9a74-d8f3ae26d573",
+    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+    "title": "Plano de Saúde",
+    "category": "Saúde",
+    "value": -249.9,
+    "type": "expense",
+    "description": null,
+    "is_fixed": true,
+    "created_at": "2021-04-15T12:00:00.000Z",
+    "updated_at": "2021-04-15T12:00:00.000Z"
+  },
+  {
+    "transaction_id": "1313d122-b073-4c40-bbe1-e21fb9ba9947",
+    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+    "title": "Hipoteca",
+    "category": "Domicílio",
+    "value": -400,
+    "type": "expense",
+    "description": "Rua das Flores, 3425",
+    "is_fixed": true,
+    "created_at": "2021-04-15T12:00:00.000Z",
+    "updated_at": "2021-04-15T12:00:00.000Z"
+  },
+  {
+    "transaction_id": "b4c5a5b1-d115-4021-84a2-987445871173",
+    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+    "title": "Reembolso",
+    "category": "Outros",
+    "value": 312.67,
+    "type": "income",
+    "description": null,
+    "is_fixed": false,
+    "created_at": "2021-04-15T12:00:00.000Z",
+    "updated_at": "2021-04-15T12:00:00.000Z"
+  }
+]

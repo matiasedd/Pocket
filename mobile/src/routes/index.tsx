@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import StackRoute from './stackRoute';
+
+import AppRoute from './appRoute';
+import AuthRoute from './authRoute';
 
 export default function Routes() {
+  const [user] = useState<object | null>({});
+
   return (
     <NavigationContainer>
-      <StackRoute />
+      { user ? <AuthRoute /> : <AppRoute /> }
     </NavigationContainer>
   );
 }
