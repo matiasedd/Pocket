@@ -1,6 +1,7 @@
-// require("dotenv-safe").config();
 import 'reflect-metadata';
 import { PocketApp } from './App';
+
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 const WAIT = 2; // Tempo de esperar para iniciar o servidor

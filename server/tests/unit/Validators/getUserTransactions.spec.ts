@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { UserViewModel } from '../../../src/models/User';
 import { HttpRequest } from '../../../src/protocols/HttpRequest';
 import { UserRepository } from '../../../src/repositories/User';
-import { getUserTransactionsValidator } from '../../../src/validators/transactions/getUserTransactions';
+import { getUserTransactionsValidator } from '../../../src/validators/transactions/GetUserTransactions';
 
 describe('Validator: getUserTransactionsValidator', () => {
   const usersMock: [UserViewModel] = [

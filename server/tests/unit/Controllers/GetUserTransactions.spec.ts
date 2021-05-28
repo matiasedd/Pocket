@@ -3,7 +3,7 @@
 import { expect } from 'chai';
 import { TransactionRepository } from '../../../src/repositories/Transaction';
 import { GetUserTransactionsController } from '../../../src/controllers/transaction/GetUserTransactions';
-import { getUserTransactionsValidator } from '../../../src/validators/transactions/getUserTransactions';
+import { getUserTransactionsValidator } from '../../../src/validators/transactions/GetUserTransactions';
 import { HttpRequest } from '../../../src/protocols/HttpRequest';
 import { TransactionViewModel } from '../../../src/models/Transaction';
 

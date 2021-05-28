@@ -9,7 +9,7 @@ export interface UserViewModel extends BaseViewModel {
   lastName: string
 }
 
-export interface UserInputModel extends Optional<UserViewModel, 'id'|'createdAt'|'updatedAt'> {}
+export interface UserInputModel extends Optional<UserViewModel, 'id' | 'createdAt' | 'updatedAt'> { }
 
 export class UserModel extends BaseModel<UserViewModel, UserInputModel> {
   email: string
@@ -18,3 +18,8 @@ export class UserModel extends BaseModel<UserViewModel, UserInputModel> {
 
   lastName: string
 }
+
+export const updateableAttrs = [
+  'firstName',
+  'lastName',
+];

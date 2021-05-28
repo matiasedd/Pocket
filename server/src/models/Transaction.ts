@@ -17,7 +17,7 @@ export interface TransactionViewModel extends BaseViewModel {
   isFixed: boolean
 }
 
-export interface TransactionInputModel extends Optional<TransactionViewModel, 'createdAt'|'updatedAt'> {}
+export interface TransactionInputModel extends Optional<TransactionViewModel, 'createdAt' | 'updatedAt'> { }
 
 export class TransactionModel extends BaseModel<TransactionViewModel, TransactionInputModel> {
   userId: string
@@ -34,3 +34,12 @@ export class TransactionModel extends BaseModel<TransactionViewModel, Transactio
 
   isFixed: boolean
 }
+
+export const updateableAttrs = [
+  'title',
+  'value',
+  'category',
+  'type',
+  'description',
+  'isFixed',
+];
