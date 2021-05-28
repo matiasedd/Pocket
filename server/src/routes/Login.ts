@@ -1,6 +1,6 @@
 import { Application } from 'express';
 import { makeRoute } from '../adpters/RouteAdapter';
-import { LoginController } from '../controllers/user/Login';
+import { LoginController } from '../controllers/login/Login';
 import { UserRepository } from '../repositories/User';
 import { loginValidator } from '../validators/login/Login';
 import { BaseRouter } from './base';
