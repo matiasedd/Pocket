@@ -18,8 +18,8 @@
 
 ### Validator
 
-- Um validator é uma função que se encarrega de fazer a validação inicial dos dados recebidos na requisição durante a execução de uma AssertiveController. Se a validação falhar, encerra a requisição enviando a resposta adequada de falha.
-- Um validator pode adicionar dados no corpo da requisição conforme necessitar, que serão passados adiante.
+- Um validator é uma classe que se encarrega de fazer a validação inicial dos dados recebidos na requisição durante a execução de uma AssertiveController (antes do handle). Se a validação falhar, encerra a requisição enviando a resposta adequada de falha.
+- Não cabe ao validator adicionar dados no corpo da request (para repassar ao handler da controller), e sim apenas realizar a validação com base nos dados iniciais da request.
 
 ### Middleware
 

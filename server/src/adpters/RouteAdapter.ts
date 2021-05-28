@@ -14,7 +14,7 @@ export const makeRoute = (controller: BaseController) => (
     // Realiza a validação caso a controller seja assertive
     if (controller instanceof BaseAssertiveController) {
       try {
-        validate = await controller.validate(request as HttpRequest);
+        validate = await controller.validator.validate(request as HttpRequest);
       } catch (error) {
         console.log(error);
         response.status(500).send(error);

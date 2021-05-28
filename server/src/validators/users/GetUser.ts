@@ -1,22 +1,32 @@
 import { HttpRequest } from '../../protocols/HttpRequest';
+import { HttpResponse } from '../../protocols/HttpResponse';
 import { UserRepository } from '../../repositories/User';
 import { ControllerValidator } from '../Base';
 
-export const getUserValidator: ControllerValidator = async (request: HttpRequest, userRepository: UserRepository) => {
-  const { userId } = request.params;
-  const userExists = await userRepository.read(userId);
-  if (userExists) {
+export class GetUserValidator extends ControllerValidator {
+  private userRepository: UserRepository;
+
+  constructor(userRepository: UserRepository) {
+    super();
+    this.userRepository = userRepository;
+  }
+
+  async validate(request: HttpRequest): Promise<HttpResponse> {
+    const { userId } = request.params;
+    const userExists = await this.userRepository.read(userId);
+    if (userExists) {
+      return {
+        statusCode: 200,
+        body: {
+          userEmail: userExists.email,
+        },
+      };
+    }
     return {
-      statusCode: 200,
+      statusCode: 404,
       body: {
-        userEmail: userExists.email,
+        message: 'Usuário não encontrado',
       },
     };
   }
-  return {
-    statusCode: 404,
-    body: {
-      message: 'Usuário não encontrado',
-    },
-  };
-};
+}

@@ -9,10 +9,5 @@ export abstract class BaseAssertiveController extends BaseController {
     this.validator = validator;
   }
 
-  private validator: ControllerValidator
-
-  async validate(request?: HttpRequest): Promise<HttpResponse | ErrorHttpResponse> {
-    const validation = await this.validator(request);
-    return validation;
-  }
+  public validator: ControllerValidator
 }
