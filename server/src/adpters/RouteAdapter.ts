@@ -16,6 +16,7 @@ export const makeRoute = (controller: BaseController) => (
       try {
         validate = await controller.validate(request as HttpRequest);
       } catch (error) {
+        console.log(error);
         response.status(500).send(error);
       }
     } else {
@@ -32,6 +33,7 @@ export const makeRoute = (controller: BaseController) => (
       try {
         handle = await controller.handle(request);
       } catch (error) {
+        console.log(error);
         response.status(500).send(error);
       }
       response.status(handle.statusCode).send(handle.body);
