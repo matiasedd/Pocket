@@ -54,8 +54,8 @@ export class UserRepository extends BaseRespository {
     return createdPassword;
   }
 
-  async getPassword(id: string): Promise<UserPasswordViewModel> {
-    const userPassword = await UserPassword.findByPk(id);
+  async getPassword(userId: string): Promise<UserPasswordViewModel> {
+    const userPassword = await UserPassword.findOne({ where: { userId } });
     return userPassword;
   }
 }

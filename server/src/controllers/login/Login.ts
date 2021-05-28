@@ -16,6 +16,7 @@ export class LoginController extends BaseAssertiveController {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { email } = request.body;
     const user = await this.userRepository.readByEmail(email);
+    console.log('env', process.env.JWT_SECRET);
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: 3600, // Expira em 1 h
     });
