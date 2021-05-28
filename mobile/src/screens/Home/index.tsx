@@ -2,23 +2,37 @@ import React, { useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-import piggyBank from '../../assets/images/piggy-bank.png';
 import Button from '../../components/Button';
+import Transaction from '../../interfaces/Transaction';
+import piggyBank from '../../assets/images/piggy-bank.png';
+import presetsExample from '../../utils/presetsExample.json';
+
 import {
   Container, Card, Transactions, Image, Text, Title, Subtitle, Content, Balance,
 } from './style';
+import colors from '../../assets/colors';
+
+type TransactionProps = { data: Transaction };
 
 export default function Home() {
-  const [transactions] = useState<Array<any> | null>([1, 2, 3, 4, 5]);
+  const [transactions] = useState<Array<Transaction> | null>(presetsExample);
 
-  function Transaction() {
+  function TransactionComponent({ data }: TransactionProps) {
+    let color: string;
+
+    if (data.value !== 0) {
+      color = data.value > 0 ? colors.success : colors.danger;
+    }
+
     return (
       <Content>
         <View style={{ alignItems: 'flex-start', maxWidth: '50%' }}>
-          <Subtitle>Título</Subtitle>
-          <Text>Categoria</Text>
+          <Subtitle>{ data.title }</Subtitle>
+          <Text>{ data.category }</Text>
         </View>
-        <Balance>R$ -12,34</Balance>
+        <Balance style={{ color }}>
+          {`$ ${data.value.toFixed(2).toString().replace('-', '')}`}
+        </Balance>
       </Content>
     );
   }
@@ -34,8 +48,8 @@ export default function Home() {
         { transactions ? (
           <FlatList
             data={transactions}
-            keyExtractor={({ item }) => item}
-            renderItem={() => <Transaction />}
+            keyExtractor={(item) => item.transactionId}
+            renderItem={({ item }) => <TransactionComponent data={item} />}
             style={{ width: '90%' }}
             showsVerticalScrollIndicator={false}
           />

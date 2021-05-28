@@ -35,7 +35,7 @@ export const Subtitle = styled.Text`
 export const Balance = styled.Text`
   font-family: ${fonts.regular};
   font-size: ${fonts.size.title};
-  color: ${colors.light.text_on_primary};
+  color: ${colors.light.text_on_primary}
   opacity: 0.8;
 `;
 

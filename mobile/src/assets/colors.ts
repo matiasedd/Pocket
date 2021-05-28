@@ -6,6 +6,6 @@ export default {
     text_on_primary: '#000000',
   },
   yellow: '#fbc02d',
-  success: '#07da63',
+  success: '#00b300',
   danger: '#d32f2f',
 };
