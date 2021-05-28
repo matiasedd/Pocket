@@ -15,7 +15,7 @@ export const loginValidator: ControllerValidator = async (request: HttpRequest, 
     };
   }
   const userPassword = await userRepository.getPassword(userExists.id);
-  const passwordCheck = await bcrypt.compare(password, userPassword);
+  const passwordCheck = await bcrypt.compare(password, userPassword.id);
   if (passwordCheck) {
     return {
       statusCode: 200,
