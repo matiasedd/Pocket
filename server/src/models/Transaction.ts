@@ -43,3 +43,13 @@ export const updateableAttrs = [
   'description',
   'isFixed',
 ];
+
+export const createAttrs = [
+  'userId',
+  'title',
+  'value',
+  'category',
+  'type',
+  'description',
+  'isFixed',
+];
