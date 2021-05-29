@@ -1,4 +1,4 @@
-# Referência da Arquitetura de Backend - v1.2.0
+# Referência da Arquitetura de Backend - v1.3.0
 
 ## Motivação
 
@@ -52,3 +52,13 @@
 
 3. O método _handle_ da controller executa o fluxo da função de negócio, realizando operações de leitura/escrita nos repositórios e retornando a resposta da requisição com o corpo e código adequados.
 4. A requisição é encerrada pelo adapter, que envia a resposta retornada pela controller.
+
+## Como desenvolver uma nova função de negócio
+
+1. Crie um controller para a função de negócio, que pode ser assertive (se precisar de validação) ou não.
+2. Impleente o método _handle_ da controller, que executa a lógica de negócio e retorna a interface HttpResponse.
+3. Se a controller for do tipo assertive, crie a validator dela e implemente o método validate. A validator pode receber quantos parâmetros quanto forem necessários (geralmente, repositories), e deve retornar a interface HttpResponse.
+4. Crie um router no lugar adequado, invocando o método makeRoute e passando uma nova instância da controller como parâmetro.
+5. Se for necessário executar autenticação na rota, passe o middleware auth, que irá inserir o atributo userId na request, que poderá ser acessado pela validator para garantir a autenticação.
+
+TODO: peças de código como exemplo
