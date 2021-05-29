@@ -14,9 +14,35 @@ import { DeleteUserValidator } from '../validators/users/DeleteUser';
 
 export class UserRoutes implements BaseRouter {
   public loadRoutes(app: Application): void {
-    app.get('/users/:userId', auth, makeRoute(new GetUserController(new GetUserValidator(new UserRepository()), new UserRepository())));
-    app.post('/users', makeRoute(new AddUserController(new AddUserValidator(), new UserRepository())));
-    app.put('/users/:userId', auth, makeRoute(new UpdateUserController(new UpdateUserValidator(new UserRepository()), new UserRepository())));
-    app.delete('/users/:userId', auth, makeRoute(new DeleteUserController(new DeleteUserValidator(new UserRepository()), new UserRepository())));
+    app.get('/users/:userId', auth, makeRoute(
+      new GetUserController(
+        new GetUserValidator(
+          new UserRepository(),
+        ),
+        new UserRepository(),
+      ),
+    ));
+    app.post('/users', makeRoute(
+      new AddUserController(
+        new AddUserValidator(),
+        new UserRepository(),
+      ),
+    ));
+    app.put('/users/:userId', auth, makeRoute(
+      new UpdateUserController(
+        new UpdateUserValidator(
+          new UserRepository(),
+        ),
+        new UserRepository(),
+      ),
+    ));
+    app.delete('/users/:userId', auth, makeRoute(
+      new DeleteUserController(
+        new DeleteUserValidator(
+          new UserRepository(),
+        ),
+        new UserRepository(),
+      ),
+    ));
   }
 }
