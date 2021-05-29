@@ -13,7 +13,7 @@ export class AddTransactionValidator extends ControllerValidator {
   }
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
-    const userId = request.body.user_id;
+    const { userId } = request.body;
     const { requestUserId } = request.userId;
     const userExists = await this.userRepository.read(userId);
     // Se o usuário existir
