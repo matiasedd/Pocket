@@ -1,6 +1,7 @@
 import { Application } from 'express';
 import { makeRoute } from '../adpters/RouteAdapter';
 import { AddTransactionController } from '../controllers/transaction/AddTransaction';
+import { DeleteTransactionController } from '../controllers/transaction/DeleteTransaction';
 import { GetTransactionController } from '../controllers/transaction/GetTransaction';
 import { GetUserTransactionsController } from '../controllers/transaction/GetUserTransactions';
 import { UpdateTransactionController } from '../controllers/transaction/UpdateTransaction';
@@ -8,6 +9,7 @@ import { auth } from '../middlewares/Auth';
 import { TransactionRepository } from '../repositories/Transaction';
 import { UserRepository } from '../repositories/User';
 import { AddTransactionValidator } from '../validators/transactions/AddTransaction';
+import { DeleteTransactionValidator } from '../validators/transactions/DeleteTransaction';
 import { GetTransactionValidator } from '../validators/transactions/GetTransaction';
 import { GetUserTransactionsValidator } from '../validators/transactions/GetUserTransactions';
 import { UpdateTransactionValidator } from '../validators/transactions/UpdateTransaction';
@@ -43,6 +45,15 @@ export class TransactionRoutes implements BaseRouter {
     app.put('/transactions/:transactionId', auth, makeRoute(
       new UpdateTransactionController(
         new UpdateTransactionValidator(
+          new UserRepository(),
+          new TransactionRepository(),
+        ),
+        new TransactionRepository(),
+      ),
+    ));
+    app.delete('/transactions/:transactionId', auth, makeRoute(
+      new DeleteTransactionController(
+        new DeleteTransactionValidator(
           new UserRepository(),
           new TransactionRepository(),
         ),
