@@ -55,8 +55,8 @@ export class UpdateTransactionValidator extends ControllerValidator {
     }
     // Se o usuário não existir
     return {
-      statusCode: 404,
-      body: 'Usuário não encontrado',
+      statusCode: 401,
+      body: 'Usuário desconhecido',
     };
   }
 }

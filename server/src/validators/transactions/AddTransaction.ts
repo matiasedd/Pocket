@@ -16,36 +16,44 @@ export class AddTransactionValidator extends ControllerValidator {
     const userId = request.body.user_id;
     const { requestUserId } = request.userId;
     const userExists = await this.userRepository.read(userId);
-    // Se o usuário existir e se o usuário for o dono do recurso sendo criado
-    if (userExists && userExists.id === requestUserId) {
-      // Se a transação possui todos os atributos requeridos
-      let hasAllAttrs = true;
-      const missgingAttrs = [];
-      createAttrs.forEach((key) => {
-        if (request.body[key] === undefined) {
-          hasAllAttrs = false;
-          missgingAttrs.push(key);
+    // Se o usuário existir
+    if (userExists) {
+      // Se o usuário tiver o mesmo id do requester
+      if (userExists.id === requestUserId) {
+        // Se a transação a ser criada possui todos os atributos requeridos
+        let hasAllAttrs = true;
+        const missgingAttrs = [];
+        createAttrs.forEach((key) => {
+          if (request.body[key] === undefined) {
+            hasAllAttrs = false;
+            missgingAttrs.push(key);
+          }
+        });
+        // Se a transação a ser criada não possui todos os atributos requeridos
+        if (!hasAllAttrs) {
+          return {
+            statusCode: 400,
+            body: {
+              missgingAttrs,
+            },
+          };
         }
-      });
-      if (!hasAllAttrs) {
+        // TODO: verificar se os atributos da transaction possuem valores válidos
         return {
-          statusCode: 400,
-          body: {
-            missgingAttrs,
-          },
+          statusCode: 200,
+          body: {},
         };
       }
-      // TODO: verificar se os atributos da transaction possuem valores válidos
+      // Se o usuário não tiver o mesmo id do requester
       return {
-        statusCode: 200,
-        body: {},
+        statusCode: 401,
+        body: 'Usuário não é dono do recurso',
       };
     }
+    // Se o usuário não existir
     return {
-      statusCode: 404,
-      body: {
-        message: 'Usuário não encontrado',
-      },
+      statusCode: 401,
+      body: 'Usuário não encontrado',
     };
   }
 }

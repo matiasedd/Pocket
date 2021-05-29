@@ -15,16 +15,26 @@ export class GetUserTransactionsValidator extends ControllerValidator {
     const { userId } = request.params;
     const { requestUserId } = request.body;
     const userExists = await this.userRepository.read(userId);
-    if (userExists && userExists.id === requestUserId) {
+    // Se o usuário existir
+    if (userExists) {
+      // Se o usuário tiver o mesmo id do requester
+      if (userExists.id === requestUserId) {
+        return {
+          statusCode: 200,
+          body: {},
+        };
+      }
+      // Se o usuário não tiver o mesmo id do requester
       return {
-        statusCode: 200,
-        body: {},
+        statusCode: 403,
+        body: 'Usuário não é dono do recurso',
       };
     }
+    // Se o usuário não existir
     return {
-      statusCode: 404,
+      statusCode: 401,
       body: {
-        message: 'Usuário não encontrado',
+        message: 'Usuário desconhecido',
       },
     };
   }
