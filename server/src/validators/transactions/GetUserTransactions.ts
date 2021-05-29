@@ -13,8 +13,9 @@ export class GetUserTransactionsValidator extends ControllerValidator {
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
     const { userId } = request.params;
+    const { requestUserId } = request.body;
     const userExists = await this.userRepository.read(userId);
-    if (userExists) {
+    if (userExists && userExists.id === requestUserId) {
       return {
         statusCode: 200,
         body: {},
