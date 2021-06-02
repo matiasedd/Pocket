@@ -2,13 +2,9 @@
 
 ## Rodando a Aplicação
 
-## Modo de teste
-
-- Instancie o container de teste com o comando `docker:test:create` e inicie o servidor com o comando `test`. O container de teste pode ser removido com o comando `docker:test:clear`.
-
 ### Modo Desenvolvimento
 
-- Utilize o comando `docker-compose up` para iniciar o servidor. As migrations e seeds serão executadas automaticamente.
+- Instancie o container de desenvolvimento com o comando `docker:create`. Se necessário, execute as migrations com o comando `db:migrate` e as seeds com o comando `db:seed`, e inicie o servidor com o comando `dev`. O container de desenvolvimento pode ser removido com o comando `docker:clear`.
 
 ### Modo Produção
 
