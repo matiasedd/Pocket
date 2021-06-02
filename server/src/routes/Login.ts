@@ -8,6 +8,13 @@ import { BaseRouter } from './base';
 export class LoginRoutes implements BaseRouter {
   // TODO: change 'routes' to a better, most descriptive name
   public loadRoutes(app: Application): void {
-    app.post('/login', makeRoute(new LoginController(new LoginValidator(new UserRepository()), new UserRepository())));
+    app.post('/login', makeRoute(
+      new LoginController(
+        new LoginValidator(
+          new UserRepository(),
+        ),
+        new UserRepository(),
+      ),
+    ));
   }
 }

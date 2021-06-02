@@ -9,7 +9,7 @@ não relacionados ao validator da controller */
 
 export const makeRoute = (controller: BaseController) => (
   async (request: Request, response: Response) => {
-    let validate = <ErrorHttpResponse>{};
+    let validate = <HttpResponse>{};
     let handle = <HttpResponse>{};
     // Realiza a validação caso a controller seja assertive
     if (controller instanceof BaseAssertiveController) {
@@ -22,9 +22,7 @@ export const makeRoute = (controller: BaseController) => (
     } else {
       validate = {
         statusCode: 200,
-        body: {
-          message: '',
-        },
+        body: '',
       };
     }
     // Após a validação, executa o método handle da controller
