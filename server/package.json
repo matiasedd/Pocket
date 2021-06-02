@@ -7,12 +7,13 @@
   "author": "Edison Matias",
   "license": "MIT",
   "scripts": {
-    "dev": "sequelize-cli db:migrate; sequelize-cli db:seed:all; ts-node-dev --respawn --transpile-only src/index.ts",
-    "dev:test": "sequelize-cli db:migrate --env=test; sequelize-cli db:seed:all --env=test; ts-node-dev --respawn --transpile-only src/index.ts --NODE_ENV=test",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "rm -rf dist; tsc",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:seed": "sequelize-cli db:seed:all",
     "start": "sequelize-cli db:migrate; node dist/index.js",
-    "docker:test:create": "docker run --name pocket_test -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=pocket_test -e POSTGRES_USER=user -p 5433:5432 -d postgres",
-    "docker:test:clear": "docker stop pocket_test; docker rm pocket_test",
+    "docker:create": "docker run --name pocket_dev -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=pocket_dev -e POSTGRES_USER=user -p 5433:5432 -d postgres",
+    "docker:clear": "docker stop pocket_dev; docker rm pocket_dev",
     "test:unit": "node_modules/.bin/mocha -r ts-node/register tests/unit/**/*.spec.ts --require babel-register",
     "test:integration": "node_modules/.bin/mocha -r ts-node/register tests/integration/**/*.spec.ts --require babel-register"
   },
