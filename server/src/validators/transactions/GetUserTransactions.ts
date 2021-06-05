@@ -33,9 +33,7 @@ export class GetUserTransactionsValidator extends ControllerValidator {
     // Se o usuário não existir
     return {
       statusCode: 401,
-      body: {
-        message: 'Usuário desconhecido',
-      },
+      body: 'Usuário desconhecido',
     };
   }
 }
