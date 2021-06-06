@@ -30,5 +30,6 @@ module.exports = {
     'no-unused-expressions': 'off',
     'max-len': ['error', { code: 200 }],
     'no-return-assign': 'off',
+    'no-plusplus': 'off',
   },
 };
