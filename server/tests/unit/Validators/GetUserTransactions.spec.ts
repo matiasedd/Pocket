@@ -1,46 +1,28 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { UserViewModel } from '../../../src/models/User';
 import { HttpRequest } from '../../../src/protocols/HttpRequest';
 import { UserRepository } from '../../../src/repositories/User';
 import { GetUserTransactionsValidator } from '../../../src/validators/transactions/GetUserTransactions';
+import { usersMock, usersPasswordMock } from '../../mocks/UserData';
+import { UserRepositoryMock } from '../../mocks/UserRepository';
 
 describe('Validator: GetUserTransactionsValidator', () => {
-  // We only need 1 user for ours tests
-  const usersMock: [UserViewModel] = [
-    {
-      id: 'd0f83766-f595-42ab-9c23-d489b8d3ff57',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'johndoe@email.com',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      softDelete: false,
-    },
-  ];
-
-  // UserRepository needs only the read method for our tests
-  const userRepositoryMock = {
-    async read(userId: string) {
-      const foundUser = usersMock.filter((user) => user.id === userId);
-      return Promise.resolve(foundUser.length > 0 ? foundUser[0] : null);
-    },
-  } as unknown as UserRepository;
+  let httpRequest: HttpRequest;
+  let userRepository: UserRepository;
+  let validator: GetUserTransactionsValidator;
+  let validate: HttpRequest;
 
   context('User exists', () => {
-    let httpRequest: HttpRequest;
-    let validator: GetUserTransactionsValidator;
-    let validate: HttpRequest;
-
     beforeEach(async () => {
       httpRequest = {
         body: {},
         params: {
-          userId: 'd0f83766-f595-42ab-9c23-d489b8d3ff57',
+          userId: usersMock[0].id,
         },
-        requesterId: 'd0f83766-f595-42ab-9c23-d489b8d3ff57',
+        requesterId: usersMock[0].id,
       } as unknown as HttpRequest;
-      validator = new GetUserTransactionsValidator(userRepositoryMock);
+      userRepository = new UserRepositoryMock(usersMock, usersPasswordMock);
+      validator = new GetUserTransactionsValidator(userRepository);
       validate = await validator.validate(httpRequest) as HttpRequest;
     });
 
@@ -54,18 +36,16 @@ describe('Validator: GetUserTransactionsValidator', () => {
   });
 
   context('User does not exist', () => {
-    let httpRequest: HttpRequest;
-    let validator: GetUserTransactionsValidator;
-    let validate: HttpRequest;
-
     beforeEach(async () => {
       httpRequest = {
         body: {},
         params: {
           userId: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx',
         },
+        requesterId: usersMock[0].id,
       } as unknown as HttpRequest;
-      validator = new GetUserTransactionsValidator(userRepositoryMock);
+      userRepository = new UserRepositoryMock(usersMock, usersPasswordMock);
+      validator = new GetUserTransactionsValidator(userRepository);
       validate = await validator.validate(httpRequest) as HttpRequest;
     });
 
@@ -79,19 +59,15 @@ describe('Validator: GetUserTransactionsValidator', () => {
   });
 
   context('User does not own the resource (requester id from token is different from id on route param)', () => {
-    let httpRequest: HttpRequest;
-    let validator: GetUserTransactionsValidator;
-    let validate: HttpRequest;
-
     beforeEach(async () => {
       httpRequest = {
         body: {},
         params: {
-          userId: 'd0f83766-f595-42ab-9c23-d489b8d3ff57',
+          userId: usersMock[0].id,
         },
-        requesterId: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx',
+        requesterId: usersMock[1].id,
       } as unknown as HttpRequest;
-      validator = new GetUserTransactionsValidator(userRepositoryMock);
+      validator = new GetUserTransactionsValidator(userRepository);
       validate = await validator.validate(httpRequest) as HttpRequest;
     });
 

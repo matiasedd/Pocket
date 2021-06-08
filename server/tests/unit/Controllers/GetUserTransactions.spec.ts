@@ -1,12 +1,14 @@
 /* eslint-disable max-len */
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { TransactionRepository } from '../../../src/repositories/Transaction';
 import { GetUserTransactionsController } from '../../../src/controllers/transaction/GetUserTransactions';
 import { GetUserTransactionsValidator } from '../../../src/validators/transactions/GetUserTransactions';
 import { HttpRequest } from '../../../src/protocols/HttpRequest';
 import { TransactionViewModel } from '../../../src/models/Transaction';
-import { UserRepository } from '../../../src/repositories/User';
+import { transactionsMock } from '../../mocks/TransactionData';
+import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
+import { UserRepositoryMock } from '../../mocks/UserRepository';
+import { usersMock, usersPasswordMock } from '../../mocks/UserData';
 
 describe('Class: GetUserTransactions', () => {
   let getUserTransactionsController;
@@ -15,36 +17,14 @@ describe('Class: GetUserTransactions', () => {
   const httpRequestMock = {
     body: {},
     params: {
-      userId: 'd0f83766-f595-42ab-9c23-d489b8d3ff57',
+      userId: usersMock[0].id,
     },
   } as unknown as HttpRequest;
 
-  const transactionMock: TransactionViewModel = {
-    id: 'b575d7a0-4394-47ab-a495-875196ee36f4',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    softDelete: false,
-    userId: 'd0f83766-f595-42ab-9c23-d489b8d3ff57',
-    title: 'Compra no mercado',
-    value: 148.65,
-    category: 'Mercado',
-    type: 'expense',
-    description: 'Acabou a mistura e o shampoo',
-    isFixed: false,
-  };
-
-  const transactionRepositoryMock = {
-    async readByUser(userId: string) {
-      const transactionData = [
-        { ...transactionMock },
-      ];
-      return Promise.resolve(transactionData.filter((transaction) => transaction.userId === userId));
-    },
-  };
-
   beforeEach(() => {
-    const transactionRepository = transactionRepositoryMock as unknown as TransactionRepository;
-    getUserTransactionsController = new GetUserTransactionsController(new GetUserTransactionsValidator(new UserRepository()), transactionRepository);
+    const transactionRepository = new TransactionRepositoryMock(transactionsMock);
+    const userRepository = new UserRepositoryMock(usersMock, usersPasswordMock);
+    getUserTransactionsController = new GetUserTransactionsController(new GetUserTransactionsValidator(userRepository), transactionRepository);
   });
 
   context('Smoke Tests', () => {
@@ -63,9 +43,9 @@ describe('Class: GetUserTransactions', () => {
     });
 
     it('should return an array of transactions on body', async () => {
-      expect(handle).to.have.property('body').which.be.a('array').and.lengthOf(1);
+      expect(handle).to.have.property('body').which.be.a('array').and.lengthOf(3);
       handle.body.forEach((transaction: TransactionViewModel) => {
-        Object.keys(transactionMock).map((key) => expect(transaction).to.have.property(key));
+        Object.keys(transactionsMock[0]).map((key) => expect(transaction).to.have.property(key));
       });
     });
 
