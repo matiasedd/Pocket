@@ -3,7 +3,6 @@
 import { expect } from 'chai';
 import { GetTransactionController } from '../../../src/controllers/transaction/GetTransaction';
 import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { GetUserTransactionsValidator } from '../../../src/validators/transactions/GetUserTransactions';
 import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
 import { UserRepositoryMock } from '../../mocks/UserRepository';
 import { usersMock, usersPasswordMock } from '../../mocks/UserData';
@@ -11,10 +10,10 @@ import { transactionsMock } from '../../mocks/TransactionData';
 import { UserRepository } from '../../../src/repositories/User';
 import { TransactionRepository } from '../../../src/repositories/Transaction';
 import { HttpResponse } from '../../../src/protocols/HttpResponse';
+import { ControllerValidatorMock } from '../../../src/validators/Base';
 
 describe('Class: GetTransaction', () => {
   let transactionRepository: TransactionRepository;
-  let userRepository: UserRepository;
   let getTransactionsController: GetTransactionController;
   const httpRequestMock = {
     body: {},
@@ -25,8 +24,7 @@ describe('Class: GetTransaction', () => {
 
   beforeEach(() => {
     transactionRepository = new TransactionRepositoryMock(transactionsMock);
-    userRepository = new UserRepositoryMock(usersMock, usersPasswordMock);
-    getTransactionsController = new GetTransactionController(new GetUserTransactionsValidator(userRepository), transactionRepository);
+    getTransactionsController = new GetTransactionController(new ControllerValidatorMock(), transactionRepository);
   });
 
   context('Smoke Tests', () => {

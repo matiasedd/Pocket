@@ -2,13 +2,12 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
 import { GetUserTransactionsController } from '../../../src/controllers/transaction/GetUserTransactions';
-import { GetUserTransactionsValidator } from '../../../src/validators/transactions/GetUserTransactions';
 import { HttpRequest } from '../../../src/protocols/HttpRequest';
 import { TransactionViewModel } from '../../../src/models/Transaction';
 import { transactionsMock } from '../../mocks/TransactionData';
 import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
-import { UserRepositoryMock } from '../../mocks/UserRepository';
-import { usersMock, usersPasswordMock } from '../../mocks/UserData';
+import { usersMock } from '../../mocks/UserData';
+import { ControllerValidatorMock } from '../../../src/validators/Base';
 
 describe('Class: GetUserTransactions', () => {
   let getUserTransactionsController;
@@ -23,8 +22,7 @@ describe('Class: GetUserTransactions', () => {
 
   beforeEach(() => {
     const transactionRepository = new TransactionRepositoryMock(transactionsMock);
-    const userRepository = new UserRepositoryMock(usersMock, usersPasswordMock);
-    getUserTransactionsController = new GetUserTransactionsController(new GetUserTransactionsValidator(userRepository), transactionRepository);
+    getUserTransactionsController = new GetUserTransactionsController(new ControllerValidatorMock(), transactionRepository);
   });
 
   context('Smoke Tests', () => {
