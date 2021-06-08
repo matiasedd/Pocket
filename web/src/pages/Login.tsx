@@ -86,7 +86,7 @@ const Landing: React.FC = () => {
         </form>
         <span>
           Não possui conta?
-          <a href="/login">clique aqui!</a>
+          <a href="/signin">clique aqui!</a>
         </span>
       </section>
     </div>

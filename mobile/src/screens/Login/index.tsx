@@ -5,14 +5,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 import {
   Container,
   Content,
-  Label,
-  Input,
   Error,
   Message,
-  Submit,
   Link,
+  Label,
 } from './style';
 import colors from '../../assets/colors';
+
+import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 export default function Login() {
@@ -42,25 +42,22 @@ export default function Login() {
   return (
     <Container>
       <Content>
-        <Label>Email</Label>
         <Input
+          label="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
           placeholder="Digite aqui seu email"
           autoCapitalize="none"
           keyboardType="email-address"
         />
-        <Label>Senha</Label>
         <Input
+          label="Senha"
           value={password}
           onChangeText={(text) => setPassword(text)}
           placeholder="Digite aqui sua senha"
           autoCapitalize="none"
           secureTextEntry
         />
-        <Link>
-          <Label alignment="right">Esqueceu sua senha?</Label>
-        </Link>
 
         {errorMessage && (
           <Error>

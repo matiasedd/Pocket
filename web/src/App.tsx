@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Landing from './pages/Landing';
 import Login from './pages/Login';
@@ -14,7 +10,7 @@ const App: React.FC = () => (
     <Switch>
       <Route exact path="/" component={Landing} />
       <Route path="/login" component={Login} />
-      <Route path="/create-account" component={CreateAccount} />
+      <Route path="/signin" component={CreateAccount} />
     </Switch>
   </Router>
 );

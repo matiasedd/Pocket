@@ -10,7 +10,7 @@ interface LoginProps {
 
 export const Container = styled.View`
   flex: 1;
-  padding: 32px;
+  padding: 24px;
   justify-content: space-between;
 `;
 
@@ -25,16 +25,6 @@ export const Label = styled.Text`
   font-size: ${fonts.size.regular};
   font-family: ${fonts.regular};
   text-align: ${(props: LoginProps) => props.alignment || 'auto'};
-`;
-
-export const Input = styled.TextInput`
-  padding-bottom: 4px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${`${colors.light.text_on_primary}32`};
-
-  color: ${colors.light.text_on_primary};
-  font-size: ${fonts.size.regular};
-  font-family: ${fonts.regular};
 `;
 
 export const Error = styled.View`

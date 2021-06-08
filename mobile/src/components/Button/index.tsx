@@ -30,7 +30,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
         backgroundColor: isDisabled ? '#ccc' : '#000',
       }}
     >
-      {isLoading ? <ActivityIndicator color="white" /> : <Text>{title}</Text>}
+      {isLoading ? <ActivityIndicator color="white" size="large" /> : <Text>{title}</Text>}
     </Button>
   );
 };

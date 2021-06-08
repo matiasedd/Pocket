@@ -10,11 +10,21 @@ const CreateAccount: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState<User>({
-    firstName: '', lastName: '', email: '', password: '', confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    emailAgain: '',
+    password: '',
+    passwordAgain: '',
   });
 
   useEffect(() => {
-    const isInputsEmpties = user.firstName === '' || user.lastName === '' || user.email === '' || user.password === '' || user.confirmPassword === '';
+    const isInputsEmpties = user.firstName === ''
+      || user.lastName === ''
+      || user.email === ''
+      || user.emailAgain === ''
+      || user.password === ''
+      || user.passwordAgain === '';
     setIsDisabled(isInputsEmpties);
   }, [user]);
 
@@ -59,6 +69,16 @@ const CreateAccount: React.FC = () => {
               onChange={(evt) => setUser({ ...user, email: evt.target.value })}
             />
           </label>
+          <label htmlFor="emailAgain">
+            <span>Confirmar email</span>
+            <input
+              type="email"
+              id="emailAgain"
+              placeholder="Digite novamente seu email aqui"
+              value={user.emailAgain}
+              onChange={(evt) => setUser({ ...user, emailAgain: evt.target.value })}
+            />
+          </label>
           <label htmlFor="password">
             <span>Senha</span>
             <input
@@ -69,32 +89,28 @@ const CreateAccount: React.FC = () => {
               onChange={(evt) => setUser({ ...user, password: evt.target.value })}
             />
           </label>
-          <label htmlFor="confirmPassword">
+          <label htmlFor="passwordAgain">
             <span>Confirmar senha</span>
             <input
               type="password"
-              id="confirmPassword"
+              id="passwordAgain"
               placeholder="Digite novamente sua senha aqui"
-              value={user.confirmPassword}
-              onChange={(evt) => setUser({ ...user, confirmPassword: evt.target.value })}
+              value={user.passwordAgain}
+              onChange={(evt) => setUser({ ...user, passwordAgain: evt.target.value })}
             />
           </label>
-          <button
-            type="submit"
-            disabled={isDisabled}
-            onClick={handleLoading}
-          >
-            {
-              isLoading ? (
-                <Lottie
-                  options={{
-                    loop: true,
-                    animationData: loading,
-                  }}
-                  width={100}
-                />
-              ) : 'Confirmar'
-            }
+          <button type="submit" disabled={isDisabled} onClick={handleLoading}>
+            {isLoading ? (
+              <Lottie
+                options={{
+                  loop: true,
+                  animationData: loading,
+                }}
+                width={100}
+              />
+            ) : (
+              'Confirmar'
+            )}
           </button>
         </form>
       </section>
