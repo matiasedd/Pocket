@@ -31,5 +31,6 @@ module.exports = {
     'max-len': ['error', { code: 200 }],
     'no-return-assign': 'off',
     'no-plusplus': 'off',
+    'no-underscore-dangle': 'off',
   },
 };
