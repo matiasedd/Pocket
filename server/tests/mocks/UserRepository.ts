@@ -69,7 +69,7 @@ export class UserRepositoryMock extends UserRepository {
 
   async update(updatedUser: UserViewModel): Promise<UserViewModel> {
     const { id } = updatedUser;
-    const userFound = this.usersMock.filter((userMock) => userMock.id === id)[0];
+    const userFound = this.usersMock.filter((user) => user.id === id)[0];
     if (userFound) {
       Object.keys(userFound).map((key) => {
         userFound[key] = updatedUser[key];
