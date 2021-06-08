@@ -17,7 +17,7 @@ export interface TransactionViewModel extends BaseViewModel {
   isFixed: boolean
 }
 
-export interface TransactionInputModel extends Optional<TransactionViewModel, 'createdAt' | 'updatedAt'> { }
+export interface TransactionInputModel extends Optional<TransactionViewModel, 'softDelete' | 'id' | 'createdAt' | 'updatedAt'> { }
 
 export class TransactionModel extends BaseModel<TransactionViewModel, TransactionInputModel> {
   userId: string
