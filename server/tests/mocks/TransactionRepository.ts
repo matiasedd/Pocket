@@ -13,18 +13,19 @@ import { TransactionRepository } from '../../src/repositories/Transaction';
 export class TransactionRepositoryMock extends TransactionRepository {
   private transactionsMock: Array<TransactionViewModel>;
 
-  constructior(transactionsMock: Array<TransactionViewModel>) {
-    this.transactionsMock = transactionsMock;
+  constructor(transactionsMock: Array<TransactionViewModel>) {
+    super();
+    this.transactionsMock = [...transactionsMock];
   }
 
   async read(id: string): Promise<TransactionViewModel> {
-    const transactionFound = this.transactionsMock.filter((transaction) => transaction.id === id);
-    return Promise.resolve(transactionFound.length > 0 ? { ...transactionFound[0] } : null);
+    const transactionFound = this.transactionsMock.find((transaction) => transaction.id === id);
+    return Promise.resolve(transactionFound || null);
   }
 
   async readByUser(userId: string): Promise<TransactionViewModel[]> {
     const transactionFound = this.transactionsMock.filter((transaction) => transaction.userId === userId);
-    return Promise.resolve(transactionFound.length > 0 ? { ...transactionFound } : null);
+    return Promise.resolve(transactionFound.length > 0 ? [...transactionFound] : null);
   }
 
   async insert(transaction: TransactionInputModel): Promise<TransactionViewModel> {
