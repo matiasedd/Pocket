@@ -7,7 +7,7 @@ import CreateAccount from './pages/CreateAccount';
 import Dashboard from './pages/Dashboard';
 
 const App: React.FC = () => {
-  const [accessToken] = useState('lorem');
+  const [accessToken] = useState('imagine a jwt token here');
 
   return (
     <Router>
