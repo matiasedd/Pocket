@@ -71,7 +71,7 @@ export class UserRepositoryMock extends UserRepository {
     const { id } = updatedUser;
     const userFound = this.usersMock.filter((user) => user.id === id)[0];
     if (userFound) {
-      Object.keys(userFound).map((key) => {
+      Object.keys(updatedUser).map((key) => {
         userFound[key] = updatedUser[key];
         return null;
       });
