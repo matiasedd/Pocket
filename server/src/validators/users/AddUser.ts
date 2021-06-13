@@ -36,7 +36,7 @@ export class AddUserValidator extends ControllerValidator {
       };
     }
     return {
-      statusCode: 404,
+      statusCode: 400,
       body: {
         message,
       },
