@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { v4 as uuidv4 } from 'uuid';
-import { TransactionInputModel, TransactionModel, TransactionViewModel } from '../../src/models/Transaction';
+import {
+  TransactionInputModel, TransactionModel, TransactionViewModel, updateableAttrs,
+} from '../../src/models/Transaction';
 import { Transaction } from '../../src/database/entities';
 import { TransactionRepository } from '../../src/repositories/Transaction';
 
@@ -11,7 +13,7 @@ import { TransactionRepository } from '../../src/repositories/Transaction';
  */
 
 export class TransactionRepositoryMock extends TransactionRepository {
-  private transactionsMock: Array<TransactionViewModel>;
+  public transactionsMock: Array<TransactionViewModel>;
 
   constructor(transactionsMock: Array<TransactionViewModel>) {
     super();
@@ -38,7 +40,6 @@ export class TransactionRepositoryMock extends TransactionRepository {
       type: '',
       description: '',
       isFixed: false,
-      softDelete: false,
     };
     // Verifica se transaction possui todos os atributos necessários
     let hasAllAttrs = true;
@@ -54,6 +55,7 @@ export class TransactionRepositoryMock extends TransactionRepository {
       id: uuidv4(),
       createdAt: new Date(),
       updatedAt: new Date(),
+      softDelete: false,
     } as TransactionModel;
     if (hasAllAttrs) {
       this.transactionsMock.push(createdTransaction);
@@ -66,7 +68,7 @@ export class TransactionRepositoryMock extends TransactionRepository {
     const { id } = updatedTransaction;
     const transactionFound = this.transactionsMock.filter((transaction) => transaction.id === id)[0];
     if (transactionFound) {
-      Object.keys(transactionFound).map((key) => {
+      Object.keys(updatedTransaction).map((key) => {
         transactionFound[key] = updatedTransaction[key];
         return null;
       });
