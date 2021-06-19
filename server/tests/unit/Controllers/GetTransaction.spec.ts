@@ -22,12 +22,12 @@ describe('Class: GetTransaction', () => {
     },
   } as unknown as HttpRequest;
 
-  beforeEach(() => {
-    transactionRepository = new TransactionRepositoryMock(transactionsMock);
-    getTransactionsController = new GetTransactionController(new ControllerValidatorMock(), transactionRepository);
-  });
-
   context('Smoke Tests', () => {
+    beforeEach(() => {
+      transactionRepository = new TransactionRepositoryMock(transactionsMock);
+      getTransactionsController = new GetTransactionController(new ControllerValidatorMock(), transactionRepository);
+    });
+
     it('should have a handler method', () => {
       expect(getTransactionsController.handle).to.exist.which.be.a('function');
     });
@@ -39,20 +39,17 @@ describe('Class: GetTransaction', () => {
 
   describe('Method: handle', () => {
     let handle: HttpResponse;
-    beforeEach(async () => {
+    before(async () => {
+      transactionRepository = new TransactionRepositoryMock(transactionsMock);
+      getTransactionsController = new GetTransactionController(new ControllerValidatorMock(), transactionRepository);
       handle = await getTransactionsController.handle(httpRequestMock);
     });
 
-    it('should return a transaction on body', () => {
-      expect(handle.body).to.exist;
-      Object.keys(transactionsMock[0]).map((key) => {
-        expect(handle.body).to.have.property(key);
-        return null;
+    it('should return status 200 and the transaction on body', () => {
+      expect(handle).to.be.eql({
+        statusCode: 200,
+        body: transactionsMock[0],
       });
-    });
-
-    it('should return statusCode 200', () => {
-      expect(handle.statusCode).to.exist.which.equals(200);
     });
   });
 });

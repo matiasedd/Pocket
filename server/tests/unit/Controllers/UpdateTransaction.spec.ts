@@ -12,8 +12,8 @@ describe('Class: UpdateTransaction', () => {
 
   const httpRequestMock = {
     body: {
-      id: 'b575d7a0-4394-47ab-a495-875196ee36f4',
-      userId: 'd0f83766-f595-42ab-9c23-d489b8d3ff57',
+      id: transactionsMock[0].id,
+      userId: transactionsMock[0].userId,
       title: 'Compra na mercearia',
       value: 95.65,
       category: 'Suprimentos',
@@ -23,12 +23,12 @@ describe('Class: UpdateTransaction', () => {
     },
   } as unknown as HttpRequest;
 
-  beforeEach(() => {
-    transactionRepository = new TransactionRepositoryMock(transactionsMock);
-    updateTransactionsController = new UpdateTransactionController(new ControllerValidatorMock(), transactionRepository);
-  });
-
   context('Smoke Tests', () => {
+    beforeEach(() => {
+      transactionRepository = new TransactionRepositoryMock(transactionsMock);
+      updateTransactionsController = new UpdateTransactionController(new ControllerValidatorMock(), transactionRepository);
+    });
+
     it('should have a handler method', () => {
       expect(updateTransactionsController.handle).to.exist.which.be.a('function');
     });
@@ -39,26 +39,27 @@ describe('Class: UpdateTransaction', () => {
   });
 
   describe('Method: handle', async () => {
-    const handle = await updateTransactionsController.handle(httpRequestMock);
+    let handle;
+
+    before(async () => {
+      transactionRepository = new TransactionRepositoryMock(transactionsMock);
+      updateTransactionsController = new UpdateTransactionController(new ControllerValidatorMock(), transactionRepository);
+      handle = await updateTransactionsController.handle(httpRequestMock);
+    });
 
     it('should have updated the transaction', () => {
-      expect(transactionRepository.transactionsMock[0]).to.be.equal(6);
       Object.keys(httpRequestMock.body).map((key) => {
         expect(transactionRepository.transactionsMock[0][key]).to.exist.which.be.equal(httpRequestMock.body[key]);
         return null;
       });
     });
 
-    it('should return the updated transaction on body', () => {
-      expect(handle.body).to.exist;
-      Object.keys(transactionsMock[0]).map((key) => {
-        expect(handle.body[key]).to.be.equal(transactionsMock[0][key]);
+    it('should return status 200 and the updated transaction on body', () => {
+      expect(handle.statusCode).to.be.equal(200);
+      Object.keys(httpRequestMock.body).map((key) => {
+        expect(handle.body[key]).to.be.equal(httpRequestMock.body[key]);
         return null;
       });
-    });
-
-    it('should return statusCode 200', () => {
-      expect(handle.statusCode).to.exist.which.equals(200);
     });
   });
 });

@@ -24,12 +24,11 @@ describe('Validator: AddUserValidator', () => {
       validate = await validator.validate(httpRequest) as HttpRequest;
     });
 
-    it('should return an empty body', () => {
-      expect(validate.body).to.be.eql({});
-    });
-
-    it('should return statusCode 200', () => {
-      expect(validate.statusCode).to.be.equals(200);
+    it('should return an empty body and status 200', () => {
+      expect(validate).to.be.eql({
+        body: {},
+        statusCode: 200,
+      });
     });
   });
 

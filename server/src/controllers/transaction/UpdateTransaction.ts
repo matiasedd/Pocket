@@ -21,6 +21,8 @@ export class UpdateTransactionController extends BaseAssertiveController {
         updatedTransaction[key] = request.body[key];
       }
     });
+    // Como o id precisa ser setado e não é atualizável, passamos ele manualmente
+    updatedTransaction.id = request.body.id;
     const transaction = await this.transactionRepository.update(updatedTransaction);
     return {
       statusCode: 200,

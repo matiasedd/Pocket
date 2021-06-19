@@ -26,12 +26,11 @@ describe('Validator: UpdateUserValidator', () => {
       validate = await validator.validate(httpRequest) as HttpRequest;
     });
 
-    it('should return an empty body', () => {
-      expect(validate.body).to.be.eql({});
-    });
-
-    it('should return statusCode 200', () => {
-      expect(validate.statusCode).to.be.equals(200);
+    it('should return an empty body and status 200', () => {
+      expect(validate).to.be.eql({
+        body: {},
+        statusCode: 200,
+      });
     });
   });
 
@@ -41,7 +40,7 @@ describe('Validator: UpdateUserValidator', () => {
       validator = new UpdateUserValidator(userRepository);
     });
 
-    it("should have a body with message 'Usuário não encontrado' when user does not exist", async () => {
+    it("should return status 404 and a body with message 'Usuário não encontrado' when user does not exist", async () => {
       httpRequest = {
         body: {},
         params: {
@@ -50,19 +49,10 @@ describe('Validator: UpdateUserValidator', () => {
         userId: usersMock[0].id,
       } as unknown as HttpRequest;
       validate = await validator.validate(httpRequest) as HttpRequest;
-      expect(validate.body).to.equals('Usuário não encontrado');
-    });
-
-    it('should return statusCode 404 when the user does not exist', async () => {
-      httpRequest = {
-        body: {},
-        params: {
-          userId: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx',
-        },
-        userId: usersMock[0].id,
-      } as unknown as HttpRequest;
-      validate = await validator.validate(httpRequest) as HttpRequest;
-      expect(validate.statusCode).to.equals(404);
+      expect(validate).to.eql({
+        body: 'Usuário não encontrado',
+        statusCode: 404,
+      });
     });
 
     it("should have a body with message 'Usuário não é dono do recurso' when user tries to update a different user", async () => {
@@ -74,19 +64,10 @@ describe('Validator: UpdateUserValidator', () => {
         userId: usersMock[0].id,
       } as unknown as HttpRequest;
       validate = await validator.validate(httpRequest) as HttpRequest;
-      expect(validate.body).to.equals('Usuário não é dono do recurso');
-    });
-
-    it('should return statusCode 401 when the user tries to update a different user', async () => {
-      httpRequest = {
-        body: {},
-        params: {
-          userId: usersMock[1].id,
-        },
-        userId: usersMock[0].id,
-      } as unknown as HttpRequest;
-      validate = await validator.validate(httpRequest) as HttpRequest;
-      expect(validate.statusCode).to.equals(401);
+      expect(validate).to.eql({
+        body: 'Usuário não é dono do recurso',
+        statusCode: 401,
+      });
     });
   });
 });

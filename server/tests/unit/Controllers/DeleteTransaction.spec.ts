@@ -16,12 +16,12 @@ describe('Class: DeleteTransaction', () => {
     },
   } as unknown as HttpRequest;
 
-  beforeEach(() => {
-    transactionRepository = new TransactionRepositoryMock(transactionsMock);
-    deleteTransactionsController = new DeleteTransactionController(new ControllerValidatorMock(), transactionRepository);
-  });
-
   context('Smoke Tests', () => {
+    beforeEach(() => {
+      transactionRepository = new TransactionRepositoryMock(transactionsMock);
+      deleteTransactionsController = new DeleteTransactionController(new ControllerValidatorMock(), transactionRepository);
+    });
+
     it('should have a handler method', () => {
       expect(deleteTransactionsController.handle).to.exist.which.be.a('function');
     });
@@ -32,24 +32,27 @@ describe('Class: DeleteTransaction', () => {
   });
 
   describe('Method: handle', async () => {
-    const transactionToDelete = { ...transactionsMock[0] };
-    const transactionsAmount = transactionsMock.length;
-    const handle = await deleteTransactionsController.handle(httpRequestMock);
+    let transactionsAmount;
+    let handle;
+
+    before(async () => {
+      transactionRepository = new TransactionRepositoryMock(transactionsMock);
+      deleteTransactionsController = new DeleteTransactionController(new ControllerValidatorMock(), transactionRepository);
+      transactionsAmount = transactionsMock.length;
+      handle = await deleteTransactionsController.handle(httpRequestMock);
+    });
 
     it('should have deleted the transaction', () => {
       expect(transactionRepository.transactionsMock.length).to.be.equal(transactionsAmount - 1);
     });
 
-    it('should return the deleted transaction on body', () => {
-      expect(handle.body).to.exist;
-      Object.keys(transactionToDelete).map((key) => {
-        expect(handle.body[key]).to.be.equal(transactionsMock[0][key]);
-        return null;
+    it('should return status 200 and a body with deleted true', () => {
+      expect(handle).to.be.eql({
+        statusCode: 200,
+        body: {
+          deleted: true,
+        },
       });
-    });
-
-    it('should return statusCode 200', () => {
-      expect(handle.statusCode).to.exist.which.equals(200);
     });
   });
 });
