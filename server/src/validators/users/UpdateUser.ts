@@ -13,18 +13,27 @@ export class UpdateUserValidator extends ControllerValidator {
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
     const { userId } = request.params;
+    const requestUserId = request.userId;
     const userExists = await this.userRepository.read(userId);
+    // Se o usuário existe
     if (userExists) {
+      // Se o usuário tiver o mesmo id do requester
+      if (userExists.id === requestUserId) {
+        return {
+          statusCode: 200,
+          body: {},
+        };
+      }
+      // Se o usuário não tiver o mesmo id do requester
       return {
-        statusCode: 200,
-        body: {},
+        statusCode: 401,
+        body: 'Usuário não é dono do recurso',
       };
     }
+    // Se o usuário não existir
     return {
       statusCode: 404,
-      body: {
-        message: 'Usuário não encontrado',
-      },
+      body: 'Usuário não encontrado',
     };
   }
 }

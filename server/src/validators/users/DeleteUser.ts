@@ -13,18 +13,27 @@ export class DeleteUserValidator extends ControllerValidator {
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
     const { userId } = request.params;
+    const { requesterId } = request;
     const userExists = await this.userRepository.read(userId);
+    // Se o usuário existe
     if (userExists) {
+      // Se o id do usuário é igual o do requester
+      if (userExists.id === requesterId) {
+        return {
+          statusCode: 200,
+          body: {},
+        };
+      }
+      // Se o id do usuário é diferente do requester
       return {
-        statusCode: 200,
-        body: {},
+        statusCode: 401,
+        body: 'Usuário não é dono do recurso',
       };
     }
+    // Se o usuário não existe
     return {
       statusCode: 404,
-      body: {
-        message: 'Usuário não encontrado',
-      },
+      body: 'Usuário não encontrado',
     };
   }
 }
