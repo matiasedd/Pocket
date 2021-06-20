@@ -13,9 +13,9 @@ import { UserRepository } from '../../src/repositories/User';
  */
 
 export class UserRepositoryMock extends UserRepository {
-  private usersMock: Array<UserViewModel>;
+  public usersMock: Array<UserViewModel>;
 
-  private usersPasswordMock: Array<UserPasswordViewModel>;
+  public usersPasswordMock: Array<UserPasswordViewModel>;
 
   constructor(usersMock: Array<UserViewModel>, usersPasswordMock: Array<UserPasswordViewModel>) {
     super();
@@ -43,7 +43,6 @@ export class UserRepositoryMock extends UserRepository {
       email: '',
       firstName: '',
       lastName: '',
-      softDelete: false,
     };
     // Verifica se user possui todos os atributos necessários
     let hasAllAttrs = true;
@@ -114,12 +113,28 @@ export class UserRepositoryMock extends UserRepository {
   async insertPassword(password: UserPasswordInputModel): Promise<UserPasswordModel> {
     const passwordAttrs = inputAttrs;
     let hasAllAttrs = true;
+    const createdPassword: UserPasswordViewModel = {
+      createdAt: null,
+      updatedAt: null,
+      softDelete: false,
+      userId: null,
+      id: null,
+    };
     passwordAttrs.forEach((key) => {
       if (password[key] === undefined) {
         hasAllAttrs = false;
+      } else {
+        createdPassword[key] = password[key];
       }
     });
-    return Promise.resolve(hasAllAttrs ? password as UserPasswordModel : null);
+    createdPassword.createdAt = new Date();
+    createdPassword.updatedAt = new Date();
+    createdPassword.softDelete = false;
+
+    if (hasAllAttrs) {
+      this.usersPasswordMock.push(createdPassword);
+    }
+    return Promise.resolve(hasAllAttrs ? createdPassword as UserPasswordModel : null);
   }
 
   async getPassword(userId: string): Promise<UserPasswordViewModel> {
