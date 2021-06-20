@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { GetUserTransactionsController } from '../../../src/controllers/transaction/GetUserTransactions';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { transactionsMock } from '../../mocks/TransactionData';
-import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
-import { usersMock } from '../../mocks/UserData';
-import { ControllerValidatorMock } from '../../../src/validators/Base';
+import { GetUserTransactionsController } from '../../../../src/controllers/transaction/GetUserTransactions';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { transactionsMock } from '../../../mocks/TransactionData';
+import { TransactionRepositoryMock } from '../../../mocks/TransactionRepository';
+import { usersMock } from '../../../mocks/UserData';
+import { ControllerValidatorMock } from '../../../../src/validators/Base';
 
-describe('Class: GetUserTransactions', () => {
+describe('Controller: GetUserTransactions', () => {
   let transactionRepository;
   let getUserTransactionsController;
   let handle;

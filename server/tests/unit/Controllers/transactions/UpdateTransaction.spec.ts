@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { UpdateTransactionController } from '../../../src/controllers/transaction/UpdateTransaction';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
-import { transactionsMock } from '../../mocks/TransactionData';
-import { ControllerValidatorMock } from '../../../src/validators/Base';
+import { UpdateTransactionController } from '../../../../src/controllers/transaction/UpdateTransaction';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { TransactionRepositoryMock } from '../../../mocks/TransactionRepository';
+import { transactionsMock } from '../../../mocks/TransactionData';
+import { ControllerValidatorMock } from '../../../../src/validators/Base';
 
-describe('Class: UpdateTransaction', () => {
+describe('Controller: UpdateTransaction', () => {
   let transactionRepository: TransactionRepositoryMock;
   let updateTransactionsController: UpdateTransactionController;
 

@@ -1,15 +1,14 @@
 /* eslint-disable max-len */
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { Console } from 'node:console';
-import { AddTransactionController } from '../../../src/controllers/transaction/AddTransaction';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
-import { usersMock } from '../../mocks/UserData';
-import { transactionsMock } from '../../mocks/TransactionData';
-import { ControllerValidatorMock } from '../../../src/validators/Base';
+import { AddTransactionController } from '../../../../src/controllers/transaction/AddTransaction';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { TransactionRepositoryMock } from '../../../mocks/TransactionRepository';
+import { usersMock } from '../../../mocks/UserData';
+import { transactionsMock } from '../../../mocks/TransactionData';
+import { ControllerValidatorMock } from '../../../../src/validators/Base';
 
-describe('Class: AddTransaction', () => {
+describe('Controller: AddTransaction', () => {
   let transactionRepository: TransactionRepositoryMock;
   let addTransactionsController: AddTransactionController;
 
@@ -41,7 +40,7 @@ describe('Class: AddTransaction', () => {
   });
 
   context('Method: handle', async () => {
-    let transactionsAmount;
+    let transactionsAmount: number;
     let handle;
 
     before(async () => {

@@ -1,18 +1,18 @@
 /* eslint-disable max-len */
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { GetTransactionController } from '../../../src/controllers/transaction/GetTransaction';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
-import { UserRepositoryMock } from '../../mocks/UserRepository';
-import { usersMock, usersPasswordMock } from '../../mocks/UserData';
-import { transactionsMock } from '../../mocks/TransactionData';
-import { UserRepository } from '../../../src/repositories/User';
-import { TransactionRepository } from '../../../src/repositories/Transaction';
-import { HttpResponse } from '../../../src/protocols/HttpResponse';
-import { ControllerValidatorMock } from '../../../src/validators/Base';
+import { GetTransactionController } from '../../../../src/controllers/transaction/GetTransaction';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { TransactionRepositoryMock } from '../../../mocks/TransactionRepository';
+import { UserRepositoryMock } from '../../../mocks/UserRepository';
+import { usersMock, usersPasswordMock } from '../../../mocks/UserData';
+import { transactionsMock } from '../../../mocks/TransactionData';
+import { UserRepository } from '../../../../src/repositories/User';
+import { TransactionRepository } from '../../../../src/repositories/Transaction';
+import { HttpResponse } from '../../../../src/protocols/HttpResponse';
+import { ControllerValidatorMock } from '../../../../src/validators/Base';
 
-describe('Class: GetTransaction', () => {
+describe('Controller: GetTransaction', () => {
   let transactionRepository: TransactionRepository;
   let getTransactionsController: GetTransactionController;
   const httpRequestMock = {

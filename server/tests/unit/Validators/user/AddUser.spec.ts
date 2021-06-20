@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { AddUserValidator } from '../../../src/validators/users/AddUser';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { AddUserValidator } from '../../../../src/validators/users/AddUser';
 
 describe('Validator: AddUserValidator', () => {
   let httpRequest: HttpRequest;

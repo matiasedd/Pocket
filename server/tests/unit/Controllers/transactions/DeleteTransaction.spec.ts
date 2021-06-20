@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { DeleteTransactionController } from '../../../src/controllers/transaction/DeleteTransaction';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { TransactionRepositoryMock } from '../../mocks/TransactionRepository';
-import { transactionsMock } from '../../mocks/TransactionData';
-import { ControllerValidatorMock } from '../../../src/validators/Base';
+import { DeleteTransactionController } from '../../../../src/controllers/transaction/DeleteTransaction';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { TransactionRepositoryMock } from '../../../mocks/TransactionRepository';
+import { transactionsMock } from '../../../mocks/TransactionData';
+import { ControllerValidatorMock } from '../../../../src/validators/Base';
 
-describe('Class: DeleteTransaction', () => {
+describe('Controller: DeleteTransaction', () => {
   let transactionRepository: TransactionRepositoryMock;
   let deleteTransactionsController: DeleteTransactionController;
 

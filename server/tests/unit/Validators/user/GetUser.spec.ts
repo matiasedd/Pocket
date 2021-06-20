@@ -1,23 +1,23 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { UserRepositoryMock } from '../../mocks/UserRepository';
-import { DeleteUserValidator } from '../../../src/validators/users/DeleteUser';
-import { UserRepository } from '../../../src/repositories/User';
-import { usersMock, usersPasswordMock } from '../../mocks/UserData';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { UserRepositoryMock } from '../../../mocks/UserRepository';
+import { GetUserValidator } from '../../../../src/validators/users/GetUser';
+import { UserRepository } from '../../../../src/repositories/User';
+import { usersMock, usersPasswordMock } from '../../../mocks/UserData';
 
-describe('Validator: DeleteUserValidator', () => {
+describe('Validator: GetUserValidator', () => {
   let httpRequest: HttpRequest;
-  let validator: DeleteUserValidator;
+  let validator: GetUserValidator;
   let validate: HttpRequest;
   let userRepository: UserRepository;
 
   beforeEach(async () => {
     userRepository = new UserRepositoryMock(usersMock, usersPasswordMock);
-    validator = new DeleteUserValidator(userRepository);
+    validator = new GetUserValidator(userRepository);
   });
 
-  it('should return an empty body and status 200 when the user exists and the requester gets data from himself', async () => {
+  it('should return status 200 and an empty body when the user exists and the requester gets data from himself', async () => {
     httpRequest = {
       body: {},
       params: {
@@ -32,7 +32,7 @@ describe('Validator: DeleteUserValidator', () => {
     });
   });
 
-  it("should return status 404 and a body with message 'Usuário não encontrado'when the user does not exist", async () => {
+  it("should return status 404 and a body with message 'Usuário não encontrado' when the user does not exist", async () => {
     httpRequest = {
       body: {},
       params: {

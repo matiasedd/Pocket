@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
-import { HttpRequest } from '../../../src/protocols/HttpRequest';
-import { UserRepository } from '../../../src/repositories/User';
-import { GetUserTransactionsValidator } from '../../../src/validators/transactions/GetUserTransactions';
-import { usersMock, usersPasswordMock } from '../../mocks/UserData';
-import { UserRepositoryMock } from '../../mocks/UserRepository';
+import { HttpRequest } from '../../../../src/protocols/HttpRequest';
+import { UserRepository } from '../../../../src/repositories/User';
+import { GetUserTransactionsValidator } from '../../../../src/validators/transactions/GetUserTransactions';
+import { usersMock, usersPasswordMock } from '../../../mocks/UserData';
+import { UserRepositoryMock } from '../../../mocks/UserRepository';
 
 describe('Validator: GetUserTransactionsValidator', () => {
   let httpRequest: HttpRequest;
