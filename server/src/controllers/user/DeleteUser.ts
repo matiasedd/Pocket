@@ -13,13 +13,13 @@ export class DeleteUserController extends BaseAssertiveController {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { userId } = request;
+    const { userId } = request.params;
     const user = await this.userRepository.read(userId);
     user.softDelete = true;
     await this.userRepository.update(user);
     return {
       statusCode: 200,
-      body: {},
+      body: user.softDelete,
     };
   }
 }
