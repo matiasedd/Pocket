@@ -14,34 +14,34 @@ export class AddTransactionValidator extends ControllerValidator {
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
     const { userId } = request.body;
-    const { requestUserId } = request.userId;
+    const { requesterId } = request;
     const userExists = await this.userRepository.read(userId);
     // Se o usuário existir
     if (userExists) {
       // Se o usuário tiver o mesmo id do requester
-      if (userExists.id === requestUserId) {
+      if (userExists.id === requesterId) {
         // Se a transação a ser criada possui todos os atributos requeridos
         let hasAllAttrs = true;
-        const missgingAttrs = [];
+        const missingAttrs = [];
         createAttrs.forEach((key) => {
           if (request.body[key] === undefined) {
             hasAllAttrs = false;
-            missgingAttrs.push(key);
+            missingAttrs.push(key);
           }
         });
-        // Se a transação a ser criada não possui todos os atributos requeridos
-        if (!hasAllAttrs) {
+        // TODO: verificar se os atributos da transaction possuem valores válidos
+        if (hasAllAttrs) {
           return {
-            statusCode: 400,
-            body: {
-              missgingAttrs,
-            },
+            statusCode: 200,
+            body: {},
           };
         }
-        // TODO: verificar se os atributos da transaction possuem valores válidos
+        // Se a transação a ser criada possui todos os atributos requeridos
         return {
-          statusCode: 200,
-          body: {},
+          statusCode: 400,
+          body: {
+            missingAttrs,
+          },
         };
       }
       // Se o usuário não tiver o mesmo id do requester
@@ -52,7 +52,7 @@ export class AddTransactionValidator extends ControllerValidator {
     }
     // Se o usuário não existir
     return {
-      statusCode: 401,
+      statusCode: 404,
       body: 'Usuário não encontrado',
     };
   }

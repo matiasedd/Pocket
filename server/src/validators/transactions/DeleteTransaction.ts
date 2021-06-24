@@ -16,46 +16,29 @@ export class DeleteTransactionValidator extends ControllerValidator {
   }
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
-    const { userId } = request.body;
     const { transactionId } = request.params;
-    const { requestUserId } = request.userId;
-    const userExists = await this.userRepository.read(userId);
+    const { requesterId } = request;
     const transactionExists = await this.transactionRepository.read(transactionId);
-    // Se o usuário existir
-    if (userExists) {
-      // Se o usuário tiver o mesmo id do requester
-      if (userExists.id === requestUserId) {
-        // Se a transação existir
-        if (transactionExists) {
-          // Se a transação pertence ao usuário
-          if (transactionExists.userId === userId) {
-            return {
-              statusCode: 200,
-              body: {},
-            };
-          }
-          // Se a transação não pertence ao usuário
-          return {
-            statusCode: 403,
-            body: 'Usuário não é dono do recurso',
-          };
-        }
-        // Se a transação não existir
+    // Se a transação existir
+    if (transactionExists) {
+      // Se o usuário é dono da transação
+      const transactionOwner = await this.userRepository.read(transactionExists.userId);
+      if (transactionOwner.id === transactionExists.userId && transactionExists.userId === requesterId) {
         return {
-          statusCode: 404,
-          body: 'Transação não encontrada',
+          statusCode: 200,
+          body: {},
         };
       }
-      // Se o usuário não tiver o mesmo id do requester
+      // Se o usuário não é dono da transação
       return {
-        statusCode: 401,
+        statusCode: 403,
         body: 'Usuário não é dono do recurso',
       };
     }
-    // Se o usuário não existir
+    // Se a transaçao não existir
     return {
-      statusCode: 401,
-      body: 'Usuário desconhecido',
+      statusCode: 404,
+      body: 'Transação não encontrada',
     };
   }
 }
