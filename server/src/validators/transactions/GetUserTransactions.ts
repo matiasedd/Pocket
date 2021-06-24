@@ -13,12 +13,12 @@ export class GetUserTransactionsValidator extends ControllerValidator {
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
     const { userId } = request.params;
-    const { requestUserId } = request.body;
+    const { requesterId } = request;
     const userExists = await this.userRepository.read(userId);
     // Se o usuário existir
     if (userExists) {
       // Se o usuário tiver o mesmo id do requester
-      if (userExists.id === requestUserId) {
+      if (userExists.id === requesterId) {
         return {
           statusCode: 200,
           body: {},
@@ -33,9 +33,7 @@ export class GetUserTransactionsValidator extends ControllerValidator {
     // Se o usuário não existir
     return {
       statusCode: 401,
-      body: {
-        message: 'Usuário desconhecido',
-      },
+      body: 'Usuário desconhecido',
     };
   }
 }

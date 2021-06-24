@@ -11,7 +11,7 @@ export async function auth(request: HttpRequest, response: Response, next: Funct
     if (err) {
       response.status(401).send('Token inválido');
     }
-    request.userId = decoded.id;
+    request.requesterId = decoded.id;
     next();
   });
 }

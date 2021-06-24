@@ -18,13 +18,13 @@ export class UpdateTransactionValidator extends ControllerValidator {
   async validate(request: HttpRequest): Promise<HttpResponse> {
     const { userId } = request.body;
     const { transactionId } = request.params;
-    const { requestUserId } = request.userId;
-    const userExists = await this.userRepository.read(userId);
+    const { requesterId } = request;
+    const transactionOwnerExists = await this.userRepository.read(userId);
     const transactionExists = await this.transactionRepository.read(transactionId);
     // Se o usuário existir
-    if (userExists) {
+    if (transactionOwnerExists) {
       // Se o usuário tiver o mesmo id do requester
-      if (userExists.id === requestUserId) {
+      if (transactionOwnerExists.id === requesterId) {
         // Se a transação existir
         if (transactionExists) {
           // Se a transação pertence ao usuário
@@ -55,8 +55,8 @@ export class UpdateTransactionValidator extends ControllerValidator {
     }
     // Se o usuário não existir
     return {
-      statusCode: 401,
-      body: 'Usuário desconhecido',
+      statusCode: 404,
+      body: 'Usuário não encontrado',
     };
   }
 }

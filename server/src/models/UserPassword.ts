@@ -14,3 +14,8 @@ export class UserPasswordModel extends BaseModel<UserPasswordViewModel, UserPass
 
   id: string
 }
+
+export const inputAttrs = [
+  'userId',
+  'id',
+];
