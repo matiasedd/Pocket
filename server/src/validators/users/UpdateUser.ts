@@ -13,7 +13,7 @@ export class UpdateUserValidator extends ControllerValidator {
 
   async validate(request: HttpRequest): Promise<HttpResponse> {
     const { userId } = request.params;
-    const requestUserId = request.userId;
+    const requestUserId = request.requesterId;
     const userExists = await this.userRepository.read(userId);
     // Se o usuário existe
     if (userExists) {

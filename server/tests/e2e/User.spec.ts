@@ -76,7 +76,6 @@ describe('Use case: User CRUD', () => {
       .set('x-access-token', xAccessToken)
       .send(updatedUser);
     expect(updateResponse).to.have.status(200);
-    console.log('updateResponse', updateResponse.body);
     Object.keys(expectedResponse).map((key) => {
       expect(updateResponse.body[key]).to.be.eql(expectedResponse[key]);
       return null;

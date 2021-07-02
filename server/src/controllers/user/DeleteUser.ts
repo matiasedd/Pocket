@@ -16,6 +16,8 @@ export class DeleteUserController extends BaseAssertiveController {
     const { userId } = request.params;
     const user = await this.userRepository.read(userId);
     user.softDelete = true;
+    const timestamp = new Date().getTime();
+    user.email = `${timestamp}_DELETED_${user.email}`;
     await this.userRepository.update(user);
     return {
       statusCode: 200,
