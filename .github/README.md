@@ -3,8 +3,9 @@
 </p>
 
 <p align="center">
-<a href="#dados">Dados</a> |
-<a href="#proposta">Proposta</a>
+  <a href="#dados">Dados</a> |
+  <a href="#proposta">Proposta</a> |
+  <a href="#interface">Interface</a>
 </p>
 
 # Dados
@@ -13,5 +14,11 @@
 # Proposta
 <p align="justify"> Diante dos fatos apresentados, o objetivo do aplicativo Pocket consiste em promover o exercício do controle financeiro pessoal aos brasileiros. Para isso, a aplicação dispõe de ferramentas como o registro de transações detalhadamente, contemplando desde seu valor monetário até o local realizado, bem como estipular limites de gastos para categorias comuns de gastos, alertando ao usuário via email quanto tal limite estiver perto de ser alcançado. A interface também torna-se um diferencial, deixando de lado gráficos complexos e sobrecarga de elementos visuais, dando lugar a uma interface limpa e intuitiva, fornecendo melhor experiência ao usuário. </p>
 
+# Interface
+<p align="center">
+  <img src="https://bit.ly/3dF1vAr" height="720" />
+  <img src="https://bit.ly/3ypDUvC" height="720" />
+</p>
+
 <hr>
-<p>Desenvolvido por <a href="https://github.com/ej0733">Edison Matias</a>.</p>
+Desenvolvido por <a href="https://github.com/ej0733">Edison Matias</a> e <a href="https://github.com/murilo9">Murilo Henrique</a>.
