@@ -26,9 +26,10 @@ export const UserEntity = sequelize.define<UserModel, UserInputModel>('User', {
     field: 'last_name',
   },
 },
-{
-  freezeTableName: true,
-  timestamps: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-});
+  {
+    freezeTableName: true,
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    underscored: true,
+  });

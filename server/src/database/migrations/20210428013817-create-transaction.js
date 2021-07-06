@@ -48,7 +48,7 @@ module.exports = {
       defaultValue: false,
       allowNull: true,
     },
-    isFixed: {
+    is_fixed: {
       type: Sequelize.DataTypes.BOOLEAN,
       defaultValue: false,
     },
