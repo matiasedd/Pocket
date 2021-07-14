@@ -15,7 +15,8 @@
     "docker:create": "docker run --name pocket_dev -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=pocket_dev -e POSTGRES_USER=user -p 5433:5432 -d postgres",
     "docker:clear": "docker stop pocket_dev; docker rm pocket_dev",
     "test:unit": "node_modules/.bin/mocha -r ts-node/register tests/unit/**/*.spec.ts --require babel-register",
-    "test:integration": "node_modules/.bin/mocha -r ts-node/register tests/integration/**/*.spec.ts --require babel-register"
+    "test:integration": "node_modules/.bin/mocha -r ts-node/register tests/integration/**/*.spec.ts --require babel-register",
+    "test:e2e": "node_modules/.bin/mocha -r ts-node/register tests/e2e/**/*.spec.ts --require babel-register"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.1",
@@ -48,6 +49,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",

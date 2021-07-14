@@ -11,5 +11,6 @@ export const sequelize = new Sequelize(
     dialect: 'postgres',
     host: dbConfig[env].host,
     port: 5433,
+    logging: false,
   },
 );

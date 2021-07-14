@@ -1,3 +1,4 @@
+import { updateableAttrs } from '../../models/User';
 import { HttpRequest } from '../../protocols/HttpRequest';
 import { HttpResponse } from '../../protocols/HttpResponse';
 import { UserRepository } from '../../repositories/User';
@@ -16,7 +17,7 @@ export class UpdateUserController extends BaseAssertiveController {
     const { userId } = request.params;
     const attrsToUpdate = { ...request.body };
     const user = await this.userRepository.read(userId);
-    Object.keys(attrsToUpdate).map((key) => user[key] = attrsToUpdate[key]);
+    updateableAttrs.forEach((key) => user[key] = attrsToUpdate[key] || user[key]);
     const updatedUser = await this.userRepository.update(user);
     return {
       statusCode: 200,

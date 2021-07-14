@@ -12,9 +12,9 @@ Resposta esperdada:
 
 ```
 {
-  "user_id": "27e84daa-d56f-4d4f-be19-779eb19e99aa", //uuidv4
-  "first_name": "Murilo",
-  "last_name": "Henrique",
+  "userId": "27e84daa-d56f-4d4f-be19-779eb19e99aa", //uuidv4
+  "firstName": "Murilo",
+  "lastName": "Henrique",
   "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." // JWT
 }
 ```
@@ -29,11 +29,11 @@ Body:
 
 ```
 {
-  "first_name": "Edison",
-  "last_name": "Matias",
+  "firstName": "Edison",
+  "lastName": "Matias",
   "email": "edison.matias@gmail.com",
   "password": "loremipsum",
-  "confirm_password: "loremipsum"
+  "confirmPassword: "loremipsum"
 }
 ```
 
@@ -41,9 +41,9 @@ Resposta esperada:
 
 ```
 {
-  "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6", //uuidv4
-  "first_name": "Edison",
-  "last_name": "Matias",
+  "userId": "0f566d84-00dc-46f4-8c03-9058223729a6", //uuidv4
+  "firstName": "Edison",
+  "lastName": "Matias",
   "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." //JWT
 }
 ```
@@ -66,9 +66,9 @@ Resposta esperada:
 
 ```
 {
-  "user_id": "27e84daa-d56f-4d4f-be19-779eb19e99aa",
-  "first_name": "Murilo",
-  "last_name": "Gomes",
+  "userId": "27e84daa-d56f-4d4f-be19-779eb19e99aa",
+  "firstName": "Murilo",
+  "lastName": "Gomes",
   "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
@@ -100,28 +100,28 @@ Responsta esperada:
 ```
 [
   {
-    "transaction_id": "6aaddef0-528b-4b92-b9e7-c6639f8baf1a",
-    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+    "transactionId": "6aaddef0-528b-4b92-b9e7-c6639f8baf1a",
+    "userId": "0f566d84-00dc-46f4-8c03-9058223729a6",
     "title": "Compras do mês",
     "category": "Mercado",
     "value": -224.85,
     "type": "expense",
     "description": "Lista de compras: 1-...",
-    "is_fixed": false,
-    "created_at": "2021-04-15T12:00:00.000Z",
-    "updated_at": "2021-04-15T12:00:00.000Z"
+    "isFixed": false,
+    "createdAt": "2021-04-15T12:00:00.000Z",
+    "updatedAt": "2021-04-15T12:00:00.000Z"
   },
   {
-    "transaction_id": "3f238d44-26a7-4a08-a9be-92668bcace3b",
-    "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+    "transactionId": "3f238d44-26a7-4a08-a9be-92668bcace3b",
+    "userId": "0f566d84-00dc-46f4-8c03-9058223729a6",
     "title": "Empréstimo",
     "category": "Empréstimos",
     "value": 155.50,
     "type": "income",
     "description": null,
-    "is_fixed": true,
-    "created_at": "2021-04-15T12:00:00.000Z",
-    "updated_at": "2021-04-15T12:00:00.000Z"
+    "isFixed": true,
+    "createdAt": "2021-04-15T12:00:00.000Z",
+    "updatedAt": "2021-04-15T12:00:00.000Z"
   }
 ]
 ```
@@ -137,15 +137,15 @@ Resposta esperada:
 ```
 {
   "transaction_id": "3f238d44-26a7-4a08-a9be-92668bcace3b",
-  "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+  "userId": "0f566d84-00dc-46f4-8c03-9058223729a6",
   "title": "Empréstimo",
   "category": "Empréstimos",
   "value": 155.50,
   "type": "income",
   "description": null,
-  "is_fixed": true,
-  "created_at": "2021-04-15T12:00:00.000Z",
-  "updated_at": "2021-04-15T12:00:00.000Z"
+  "isFixed": true,
+  "createdAt": "2021-04-15T12:00:00.000Z",
+  "updatedAt": "2021-04-15T12:00:00.000Z"
 }
 ```
 
@@ -159,7 +159,7 @@ Body:
 
 ```
 {
-  "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6"
+  "userId": "0f566d84-00dc-46f4-8c03-9058223729a6"
   "title": "Café expresso",
   "category": "Alimentação",
   "value": -10.90,
@@ -172,15 +172,15 @@ Resultado esperado:
 ```
 {
   "transaction_id": "b4342d43-2d31-40fd-ab3e-a09ca942171d", //uuidv4
-  "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+  "userId": "0f566d84-00dc-46f4-8c03-9058223729a6",
   "title": "Café expresso",
   "category": "Alimentação",
   "value": -10.90,
   "type": "expense",
   "description": null,
-  "is_fixed": false,
-  "created_at": "2021-04-15T12:00:00.000Z",
-  "updated_at": "2021-04-15T12:00:00.000Z"
+  "isFixed": false,
+  "createdAt": "2021-04-15T12:00:00.000Z",
+  "updatedAt": "2021-04-15T12:00:00.000Z"
 }
 ```
 
@@ -203,16 +203,16 @@ Resultado esperado:
 
 ```
 {
-  "transaction_id": "3f238d44-26a7-4a08-a9be-92668bcace3b",
-  "user_id": "0f566d84-00dc-46f4-8c03-9058223729a6",
+  "transactionId": "3f238d44-26a7-4a08-a9be-92668bcace3b",
+  "userId": "0f566d84-00dc-46f4-8c03-9058223729a6",
   "title": "Café expresso",
   "category": "Alimentação",
   "value": -15.90,
   "type": "expense",
   "description": "Cafeteria São Pedro",
-  "is_fixed": false,
-  "created_at": "2021-04-15T12:00:00.000Z",
-  "updated_at": "2021-04-15T12:00:00.000Z"
+  "isFixed": false,
+  "createdAt": "2021-04-15T12:00:00.000Z",
+  "updatedAt": "2021-04-15T12:00:00.000Z"
 }
 ```
 

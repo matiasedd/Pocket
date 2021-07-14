@@ -41,9 +41,10 @@ export const TransactionEntity = sequelize.define<TransactionModel, TransactionI
     type: DataTypes.BOOLEAN,
   },
 },
-{
-  freezeTableName: true,
-  timestamps: true,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-});
+  {
+    freezeTableName: true,
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    underscored: true,
+  });

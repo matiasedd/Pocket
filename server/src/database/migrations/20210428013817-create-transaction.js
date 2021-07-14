@@ -23,6 +23,35 @@ module.exports = {
       allowNull: false,
       defaultValue: new Date(),
     },
+    title: {
+      type: Sequelize.DataTypes.STRING,
+      defaultValue: false,
+      allowNull: true,
+    },
+    value: {
+      type: Sequelize.DataTypes.DOUBLE(2),
+      defaultValue: 0.00,
+      allowNull: true,
+    },
+    category: {
+      type: Sequelize.DataTypes.STRING,
+      defaultValue: false,
+      allowNull: true,
+    },
+    type: {
+      type: Sequelize.DataTypes.STRING,
+      defaultValue: false,
+      allowNull: false,
+    },
+    description: {
+      type: Sequelize.DataTypes.STRING,
+      defaultValue: false,
+      allowNull: true,
+    },
+    is_fixed: {
+      type: Sequelize.DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   })
     .then(() => queryInterface.addConstraint('Transaction', {
       type: 'FOREIGN KEY',
